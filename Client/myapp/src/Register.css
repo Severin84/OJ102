@@ -1,0 +1,97 @@
+.RegisterPage{
+    /* background-color:black; */
+    width:100vw;
+    height:100vh;
+    background: linear-gradient(90deg ,#280000 33.33%, #b10f2e 33.33%,#b10f2e 66.66%, #fdffff 66.66%);
+}
+.RegisterBlock{
+    position:relative;
+    justify-content:center;
+    align-content:center;
+    display:flex;
+    top:10rem;
+    background-color:#faa916;
+    width:25%;
+    left:35rem;
+    border-radius:1rem;
+}
+.RegisterBlockDiv{
+    wdith:5rem;
+    height:15rem;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    margin-top:2rem;
+}
+.RegisterInputText{
+    width:15rem;
+    height:2rem;
+    border-radius:0.5rem;
+    font-size: 1.2rem;
+}
+.RegisterInputEmail{
+    width:15rem;
+    height:2rem;
+    border-radius:0.5rem;
+    font-size: 1.2rem;
+}
+
+.RegisterInputPassword{
+    width:15rem;
+    height:2rem;
+    border-radius:0.5rem;
+    font-size: 1.2rem;
+}
+.RegisterButtonDiv{
+    height:3rem;
+    width:6rem;
+    display:flex;
+    position:relative;
+    margin-left:4.5rem
+}
+.RegisterButton{
+    height:3rem;
+    width:6rem;
+    border-radius:1rem;
+    background-color:#000000;
+    color:white;
+}
+.RegisterButton:active{
+    transform:scale(0.95);
+}
+.RegisterTextDiv{
+    display:flex;
+    margin-left:4rem;
+}
+
+@media only screen and (max-width: 80em) {
+    .RegisterBlock{
+      margin-left: -10rem;
+      width:20rem;
+    }
+}
+
+@media only screen and (max-width: 64em) {
+    .RegisterBlock{
+        margin-left: -14rem;
+        background-color: blue;
+        width:20rem;
+    }
+}
+
+@media only screen and (max-width: 48em) {
+    .RegisterBlock{
+        margin-left: -19rem;
+        background-color: brown;
+        width:20rem;
+    }
+}
+
+@media only screen and (max-width: 40em) {
+    .RegisterBlock{
+        margin-left: -23rem;
+        background-color: chocolate;
+        width:20rem;
+    }
+}

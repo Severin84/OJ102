@@ -1,0 +1,92 @@
+.LoginPage{
+    /* background-color:#fbfffe; */
+    width:100vw;
+    height:100vh;
+    background: linear-gradient(to left,#280000 50%,#fdffff 50%);  
+}
+.LoginBlock{
+    position:relative;
+    justify-content:center;
+    /* align-content:center; */
+    display:flex;
+    top:10rem;
+    background-color:#b10f2e;
+    width:20rem;
+    left:38rem;
+    border-radius:1rem;
+   
+}
+.LoginDiv{
+    wdith:5rem;
+    height:15rem;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    margin-top:2rem;
+
+}
+.EmailInput{
+    width:15rem;
+    height:2rem;
+    border-radius:0.5rem;
+    font-size: 1.2rem;
+}
+.PasswordInput{
+    width:15rem;
+    height:2rem;
+    border-radius:0.5rem;
+    font-size: 1.2rem;
+}
+.LoginButtonDiv{
+    height:3rem;
+    width:5rem;
+    display:flex;
+    position:relative;
+    margin-left:5rem
+}
+.LoginButton{
+    height:3rem;
+    width:5rem;
+    border-radius:1rem;
+    background-color:#000000;
+    color:white
+}
+.LoginButton:active{
+    transform:scale(0.95);
+}
+.LoginTextDiv{
+    display:flex;
+    margin-left:3rem
+}
+
+@media only screen and (max-width: 80em) {
+    .LoginBlock{
+      margin-left: -10rem;
+      width:20rem;
+    }
+}
+
+@media only screen and (max-width: 64em) {
+    .LoginBlock{
+        margin-left: -14rem;
+        background-color: blue;
+        width:20rem;
+    }
+}
+
+@media only screen and (max-width: 48em) {
+    .LoginBlock{
+        margin-left: -19rem;
+        background-color: brown;
+        width:20rem;
+    }
+}
+
+@media only screen and (max-width: 40em) {
+    .LoginBlock{
+        margin-left: -23rem;
+        background-color: chocolate;
+        width:20rem;
+    }
+}

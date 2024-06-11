@@ -1,0 +1,6 @@
+.uploadQuestion:active{
+    transform: scale(0.95);
+}
+.UploadTestCase:active{
+    transform: scale(0.95);
+}

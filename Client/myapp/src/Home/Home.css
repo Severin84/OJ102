@@ -1,0 +1,29 @@
+.HomePage{
+    background: linear-gradient(90deg ,#96031a 33.33%, #fbfffe 33.33%,#fbfffe 66.66%, #1b1b1e 66.66%)
+}
+.QuestionTitle{
+    display:flex;
+    position:relative;
+    justify-content:center;
+}
+.QuestionBlock{
+    margin-left:29rem;
+    margin-top:3rem;
+    width:40%;
+    height:100vh;
+    border-radius:1rem;
+    border-style:solid;
+    z-index: 999;
+    background-color: white;
+}
+.QuestionsQuestionDiv{
+    padding: 0.2rem;
+    display:flex;
+    position:relative;
+    justify-content:space-between;
+    font-size: 1.2rem;
+}
+.QuestionsQuestion{
+    cursor:pointer;
+    
+}

@@ -1,0 +1,3 @@
+node_modules/
+.env
+public.ecr.aws/c5u3p9e3/trial101ojcompiler:latest

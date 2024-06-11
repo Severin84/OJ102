@@ -1,0 +1,103 @@
+.EditorQuestionTag{
+    margin-top:3rem;
+    /* margin-left:3rem; */
+    display:flex;
+    justify-content:center
+}
+.Editor{
+    display:flex;
+    margin-left:5rem;
+    margin-top:5rem;
+}
+.descriptionDiv{
+    width:20.2rem;
+    border-style: solid;
+    border-radius: 1rem;
+}
+.langdrop{
+    padding-top: 2rem;
+    display:flex;
+    justify-content:center
+}
+.editorspace{
+    margin-left: 10rem;
+}
+.des{
+    padding: 1rem;
+}
+.description{
+    padding:1rem;
+}
+.LanguageSelection{
+    width:5rem;
+}
+.EditorInputOutputButtons{
+    margin-top:5rem;
+    position:relative;
+    left:2rem;
+    overflow:hidden;
+}
+.QuestionType{
+    display: flex;
+    justify-content: center;
+}
+.EditorInputOutput{
+    display:flex;
+    flex-direction:column;
+}
+.EditorOutput{
+    height:10rem;
+    width:25rem;
+    border:solid;
+}
+.EditorButtons{
+    display:flex;
+    position:relative;
+    left:8rem;
+}
+.EditorRun{
+    background-color:red;
+    color:white;
+    width:5rem;
+    height:3rem;
+    border-radius:1rem;
+}
+.EditorSubmit{
+    background-color:red;
+    color:white;
+    width:5rem;
+    height:3rem;
+    border-radius:1rem;
+}
+
+@media only screen and (max-width: 80em) {
+    .Editor{
+        margin-left:20rem;
+        margin-top:1rem;
+    }
+    .EditorInputOutput{
+        display:flex
+    }
+}
+
+@media only screen and (max-width: 64em) {
+    .Editor{
+        margin-left:10rem;
+        margin-top:1rem;
+    }
+    
+}
+
+@media only screen and (max-width: 48em) {
+    .Editor{
+        margin-left:0rem;
+        margin-top:1rem;
+    }
+}
+
+@media only screen and (max-width: 40em) {
+    .Editor{
+        margin-left:0rem;
+        margin-top:1rem;
+    }
+}
