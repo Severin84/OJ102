@@ -2,7 +2,8 @@ import React, { useState} from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import './Register.css'
+import './Register.css';
+import toast,{Toaster} from 'react-hot-toast'
 const Register = () => {
   const navigate=useNavigate();
   const [name,setName]=useState('');
@@ -23,8 +24,11 @@ const Register = () => {
      }else{
        navigate("/register")
      }
+      toast.success("Registered Successfully")
+     //console.log(response);
     }catch(error){
-      console.log(error)
+      //console.log(error)
+      toast.error(error?.response?.data?.message)
     }
   }
 
@@ -47,6 +51,7 @@ const Register = () => {
         </div>
     </div>
     </div>
+     
     </div>
   )
 }

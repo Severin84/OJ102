@@ -9,7 +9,7 @@ const getQuestionData=async(req,res,next)=>{
    try{
       const {lang,code,pid}=req.body;
       if(!lang||!code||!pid){
-        res.status(400).json({message:"Both language and code are required"});
+        return res.status(401).json({message:"Both language and code are required"});
       }
       const testData=await TestCaseModel.TestCaseModel.findOne({pid:pid})
       const input = testData?.TestCase;
@@ -109,7 +109,7 @@ const submitcodeFromFile=async(req,res,next)=>{
       // console.log(pid);
       // console.log(req.file)
       if(!lang||!pid){
-         res.status(400).json({message:"Both language and code are required"});
+        return res.status(401).json({message:"Both language and file are required"});
       }
       const fileName=req.file.filename.split("-")[1];
       const codeFile=path.join(__dirname,'uploads',req.file.filename)

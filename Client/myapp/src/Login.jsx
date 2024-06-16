@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import "../src/Login.css"
+import "../src/Login.css";
+import toast,{Toaster} from 'react-hot-toast'
 
 //"http://localhost:5000/api/auth/login"
 //${process.env.REACT_APP_BASE_URL}
@@ -9,6 +10,7 @@ const Login = () => {
   const navigate=useNavigate();
   const [email,setemail]=useState('');
   const [password,setpassword]=useState('');
+
   const userLogin=async()=>{
     try{
        const response=await axios.post(`http://localhost:5000/api/auth/login`,
@@ -23,7 +25,7 @@ const Login = () => {
         withCredentials:true
        })
        //console.log(response)
-       if(response.status===200 ){
+       if(response.status===200){
          if(response?.data?.data?.role==="admin"){
           navigate("/admin")
          }else{
@@ -32,8 +34,10 @@ const Login = () => {
        }else{
           navigate("/login")
        }
+       toast.success("LoggedIn Successfully")
     }catch(error){
-       console.log(error)
+      // console.log(error)
+      toast.error(error?.response?.data?.message)
     }
   }
   
@@ -54,6 +58,7 @@ const Login = () => {
             </div>
         </div>
     </div>
+      
     </div>
   )
 }

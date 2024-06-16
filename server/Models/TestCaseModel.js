@@ -1,6 +1,5 @@
 const mongoose=require('mongoose');
 
-
 const TestCaseSchema=new mongoose.Schema({
     TestCase:{
         type:Array,
@@ -13,7 +12,9 @@ const TestCaseSchema=new mongoose.Schema({
     pid:{
         type:Number,
         required:true,
-    }
+    },
+    TestInput:[],
+    TestOutput:[],
 },{timestamps:true})
 
 const TestCaseModel=mongoose.model('TestCases',TestCaseSchema);

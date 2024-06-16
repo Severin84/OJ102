@@ -14,7 +14,7 @@ const QuestionsUpload = () => {
     const [pid,setPid]=useState();
     const [Difficulty,setDifficulty]=useState("Easy");
     const [DifficultyInfo,setdifficultyInfo]=useState();
-  
+    
     const updateDis=(value)=>{
        setDiscription(value)
     }
@@ -117,7 +117,7 @@ const QuestionsUpload = () => {
         <div style={{display:"flex"}}>
         <div style={{display:"flex"}}>
             <div>
-                <span style={{fontSize:"1.5rem"}}>Test Cases:</span>
+                <span style={{fontSize:"1.5rem"}}>Example Input:</span>
             </div>
             <div>
              <textarea style={{borderRadius:"0.5rem"}} name='paragraph_text' cols={50} rows={10} onChange={(e)=>updatetestCase(e.target.value)}></textarea>
@@ -125,7 +125,7 @@ const QuestionsUpload = () => {
         </div>
         <div style={{display:"flex",marginLeft:"2rem"}}>
             <div>
-                <span style={{fontSize:"1.5rem"}}>Correct Answers:</span>
+                <span style={{fontSize:"1.5rem"}}>Example Output:</span>
             </div>
             <div>
              <textarea style={{borderRadius:"0.5rem"}} name='paragraph_text' cols={50} rows={10} onChange={(e)=>updateCorrectAns(e.target.value)}></textarea>

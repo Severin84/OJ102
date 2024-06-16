@@ -5,6 +5,7 @@
     display:flex;
     position:relative;
     justify-content:center;
+    padding-top: 7rem;
 }
 .QuestionBlock{
     margin-left:29rem;

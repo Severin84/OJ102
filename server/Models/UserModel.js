@@ -26,10 +26,33 @@ const userSchema=new mongoose.Schema({
     refreshToken:{
         type:String,
     },
-    questionSolved:[{
+    questionSolved:[
+        {
+            pid:{type:Number,required:true},
+            title:{type:String,required:true},
+            description:{type:String,required:true},
+            difficulty:{type:Object,required:true},
+            judgement:{type:Boolean,required:true},
+            Language:{type:String,required:true},
+            time:{type:String,default:Date.now(),required:true},
+        },
+        
+    ],
+    numberofquestionsolved:{
+        type:Number,
+        default:0,
+        required:true,
+    },
 
-    }],
 },{timestamps:true});
+
+// {
+//     pid:{type:Number,required:true},
+//     title:{type:String,required:true},
+//     description:{type:String,required:true},
+//     difficulty:{type:Object,required:true}
+// }
+
 
 // addresses: [
 //     {

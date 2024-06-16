@@ -1,5 +1,6 @@
 .Adminpage{
     display:flex;
+    padding-top: 5rem;
 }
 .AdminAside{
     width:18rem;
@@ -8,6 +9,24 @@
 }
 .AdminAsideDiv{
     margin-top:15rem;
+}
+.uploadTestCases{
+    margin-bottom:0.5rem;
+    font-size:1.5rem;
+    height:2rem;
+    width:13rem;
+    border-radius:0.5rem;
+    background-color:#969197;
+    cursor:pointer;
+}
+.updateQuestion{
+    margin-bottom:0.5rem;
+    font-size:1.5rem;
+    height:2rem;
+    width:13rem;
+    border-radius:0.5rem;
+    background-color:#969197;
+    cursor:pointer;
 }
 .AdminAsideQuestionUpload{
     margin-bottom:0.5rem;

@@ -49,12 +49,12 @@ const updateQuestion=async(req,res,next)=>{
       if(!discription){
         return res.status(400).json({message:"Please enter teh content to update"})
       }
-      const quest=await QuestionsModel.QuestionsModel.findOne({title});
+      const quest=await QuestionsModel.QuestionsModel.findOne({pid:pid});
       if(!quest){
         return res.status(400).json({message:"This question does not exist"});
       }
       
-      const response=await QuestionsModel.QuestionsModel.updateOne({title:title},{$set:{discription:discription}})
+      const response=await QuestionsModel.QuestionsModel.updateOne({pid:pid},{$set:{discription:discription,title:title}})
       //console.log("KKK")
       res.status(200).json({message:response});
     }catch(error){
@@ -79,6 +79,7 @@ const deleteQuestion=async(req,res,next)=>{
     res.status(500).json({message:"Somthing went wrong while Deleting the question"})
   }
 }
+
 module.exports={
     createQuestions,
     getQuestion,

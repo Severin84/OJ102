@@ -1,0 +1,24 @@
+table{
+    border-collapse: collapse;
+}
+tr{
+    width:30rem
+}
+td,th{
+    border: 1px solid black;
+    padding: 10px 30px;
+    width:5rem;
+    font-size: 1.05rem;
+}
+.updateButton{
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: #555af0;
+}
+.deleteButton{
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: #f05f55;
+}

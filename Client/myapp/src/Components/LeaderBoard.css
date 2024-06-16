@@ -1,0 +1,31 @@
+.LeaderboardPage{
+    padding-top: 8rem;
+}
+
+.leaderboardpagediv{
+    display: flex;
+    justify-content: center;
+   
+}
+.leaderpagetitle{
+    height: 5rem;
+    width: 25rem;
+    font-size: 3rem;
+    font-weight:bold;
+}
+.ranklist{
+    display: flex;
+    justify-content: center;
+}
+table{
+    border-collapse: collapse;
+}
+tr{
+    width: 24rem;
+}
+td,th{
+    border: 1px solid rgb(0, 0, 0);
+    padding: 10px 30px;
+    width:8rem;
+    font-size: 1.05rem;
+}

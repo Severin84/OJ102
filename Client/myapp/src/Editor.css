@@ -1,75 +1,156 @@
+.TheWholeEditor{
+    padding-top: 4rem;
+}
 .EditorQuestionTag{
-    margin-top:3rem;
-    /* margin-left:3rem; */
-    display:flex;
-    justify-content:center
-}
-.Editor{
-    display:flex;
-    margin-left:5rem;
-    margin-top:5rem;
-}
-.descriptionDiv{
-    width:20.2rem;
-    border-style: solid;
-    border-radius: 1rem;
-}
-.langdrop{
-    padding-top: 2rem;
-    display:flex;
-    justify-content:center
-}
-.editorspace{
-    margin-left: 10rem;
-}
-.des{
-    padding: 1rem;
-}
-.description{
-    padding:1rem;
-}
-.LanguageSelection{
-    width:5rem;
-}
-.EditorInputOutputButtons{
-    margin-top:5rem;
-    position:relative;
-    left:2rem;
-    overflow:hidden;
+    padding-top: 4rem;
+    display: flex;
+    margin-bottom: 3rem;
+    margin-left: 3rem;
 }
 .QuestionType{
     display: flex;
     justify-content: center;
+    width:5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    margin-left: 2rem;
 }
-.EditorInputOutput{
-    display:flex;
-    flex-direction:column;
+.InputButton{
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
 }
-.EditorOutput{
-    height:10rem;
-    width:25rem;
-    border:solid;
+.InputButton:active{
+    transform: scale(0.95);
+}
+.OutputButton{
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+}
+.OutputButton:active{
+    transform: scale(0.95);
+}
+.noneditor{
+    width: 45vw;
+    height: 80vh;
+    top:0;
+    bottom: 0;
+    overflow-y: scroll;
+}
+.InputOutputRunSubmit{
+    width: 40vw;
+    display: flex;
+    justify-content:space-evenly;
+}
+.DiscriptionandHistory{
+    display: flex;
+    justify-content: center;
+}
+.History{
+    height: 2rem;
+    width: 6rem;
+    border-radius: 0.5rem;
+}
+.Description{
+    height: 2rem;
+    width: 6rem;
+    border-radius: 0.5rem;
+}
+.Inputandoutputbuttons{
+    width: 15vw;
+    display: flex;
+    justify-content: space-between;
+}
+.langdropAndfileInput{
+    width: 40rem;
+    display: flex;
+    justify-content:space-evenly;
 }
 .EditorButtons{
-    display:flex;
-    position:relative;
-    left:8rem;
+    width: 15vw;
+    display: flex;
+    justify-content: space-between;
 }
-.EditorRun{
-    background-color:red;
-    color:white;
-    width:5rem;
-    height:3rem;
-    border-radius:1rem;
+.EditorInputOutputButtons{
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+}
+.discriptionInputandOutput{
+    margin: 3rem;
+    height:auto
 }
 .EditorSubmit{
-    background-color:red;
-    color:white;
-    width:5rem;
-    height:3rem;
-    border-radius:1rem;
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+}
+.EditorSubmit:active{
+    transform: scale(0.95);
+}
+.EditorRun{
+    width: 5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+}
+.EditorRun{
+    transform: scale(0.95);
+}
+.descriptionDiv{
+    width:35vw;
+    height:auto;
+}
+.labelforfile{
+      /* width: 14rem;
+	height: 14rem; */
+
+    /* background-color: aquamarine; */
+}
+.fileInputField{ 
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+}
+.fileInput label{
+    display: block;
+    position: relative;
+    width: 7rem;
+    height: 2rem;
+    border-radius: 1rem;
+    background: linear-gradient(40deg, #ff6ec4, #7873f5);
+    /* box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .2s ease-out;
 }
 
+.maindivider{
+    display: flex;
+    justify-content: space-between;
+}
+.EditorHalf{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+}
+table{
+    border-collapse: collapse;
+}
+tr{
+    width: 24rem;
+}
+td,th{
+    border: 1px solid black;
+    padding: 10px 30px;
+    width:8rem;
+    font-size: 1.05rem;
+}
 @media only screen and (max-width: 80em) {
     .Editor{
         margin-left:20rem;

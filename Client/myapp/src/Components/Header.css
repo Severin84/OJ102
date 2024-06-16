@@ -1,0 +1,54 @@
+.NavbarChildren{
+    display: flex; 
+    justify-content: space-between;
+}
+.logo{
+   margin-top: 1rem;
+   margin-left: 10rem;
+}
+.Navbar{
+    position: fixed;
+    z-index: 9999;
+    background-color: black;
+    color: whitesmoke;
+    width: 100vw;
+    height:5rem;
+}
+.NavbarChildren{
+   /* margin-top: 1rem; */
+   margin-top: -3rem;
+   margin-left: 60vw;
+   width: 20rem;
+   display: flex;
+   justify-content: space-between;
+}
+.home{
+   height: 3rem;
+   width: 5rem;
+   border-radius: 0.5rem;
+   font-size: 1.2rem;
+   background-color: #d89518;
+}
+.home:active{
+    transform: scale(0.9);
+}
+.leaderboard{
+    height: 3rem;
+    width: 8rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    background-color: #d89518;
+}
+.leaderboard:active{
+    transform: scale(0.9);
+}
+.logout{
+    height: 3rem;
+    width: 5rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    background-color: #ef3c24;
+}
+.logout:active{
+    transform: scale(0.9);
+}

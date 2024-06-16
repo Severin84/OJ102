@@ -1,18 +1,23 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import '../Home/Home.css'
+import '../Home/Home.css';
+import toast from 'react-hot-toast'
 
 //"http://localhost:5000/api/question/getallQuestions"
 //${process.env.REACT_APP_BASE_URL}
 const Home = ({setQuestion}) => {
+  //console.log("hello")
   const [questions,setQuestions]=useState([]);
   const navigate=useNavigate();
 
+  useEffect(()=>{
+      getQuestions()
+  },[])
 
   const getQuestions=async()=>{
     try{
-      const response=await axios.get(`http://localhost:5000/api/question/getallQuestions`,
+      const response=await axios.get('http://localhost:5000/api/question/getallQuestions',
         {
           headers:{
              'Content-Type':'application/json'
@@ -20,21 +25,16 @@ const Home = ({setQuestion}) => {
           withCredentials:true
          }
         )
-        console.log(response);
-        // if(response.status!==200){
-        //    navigate("/login")
-        // }
+       // console.log(response);
         setQuestions(response?.data?.data)
     }catch(error){
-      console.log(error);
+     // console.log(error);
+      toast.error(error?.response?.data?.message)
+      navigate('/login')
     }
-    
   }
- console.log(questions)
-  useEffect(()=>{
-      getQuestions();
-  },[])
 
+ 
   return (
     <div className='HomePage'>
        <div className='QuestionTitle' >
