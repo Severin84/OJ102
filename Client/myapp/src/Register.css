@@ -75,23 +75,20 @@
 @media only screen and (max-width: 64em) {
     .RegisterBlock{
         margin-left: -14rem;
-        background-color: blue;
         width:20rem;
     }
 }
 
 @media only screen and (max-width: 48em) {
     .RegisterBlock{
-        margin-left: -19rem;
-        background-color: brown;
+        margin-left: -21rem;
         width:20rem;
     }
 }
 
 @media only screen and (max-width: 40em) {
     .RegisterBlock{
-        margin-left: -23rem;
-        background-color: chocolate;
+        margin-left: -25rem;
         width:20rem;
     }
 }

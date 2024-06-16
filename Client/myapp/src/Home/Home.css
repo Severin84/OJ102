@@ -28,3 +28,39 @@
     cursor:pointer;
     
 }
+
+@media only screen and (max-width: 80em) {
+    .QuestionTitle{
+        margin-left: -6rem;
+    }
+    .QuestionBlock{
+        margin-left: 23rem;
+    }
+}
+
+@media only screen and (max-width: 64em) {
+    .QuestionTitle{
+        margin-left: -6rem;
+    }
+    .QuestionBlock{
+        margin-left: 19rem;
+    }
+}
+
+@media only screen and (max-width: 48em) {
+    .QuestionTitle{
+        margin-left: -1rem;
+    }
+    .QuestionBlock{
+        margin-left: 14rem;
+    }
+}
+
+@media only screen and (max-width: 40em) {
+    .QuestionTitle{
+        margin-left: -1rem;
+    }
+    .QuestionBlock{
+        margin-left: 11rem;
+    }
+}

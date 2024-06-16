@@ -88,7 +88,7 @@ const UploadTestCases = () => {
     // },[])
   useEffect(()=>{
       getInputOutputTestCases();
-      uploadInputOutputTestCases()
+    //   uploadInputOutputTestCases()
   },[change])
 
   return (
@@ -124,23 +124,6 @@ const UploadTestCases = () => {
                 </div>
         </div>
         <div style={{marginLeft:"10rem",display:'flex',justifyContent:"space-between",width:"40vw",marginTop:"5rem"}}>
-            {/* <table>
-                <tc>
-                    <td>Input</td>
-                    <td>output</td>
-                </tc>
-                <tr>
-                    {
-                        input.map((value,idx)=>(
-                            <tc>
-                            <td>{value}</td>
-                            <td>{output[idx]}</td>
-                            <td><button className='DeleteButton' onClick={()=>handleDeleteTC(value,output[idx])}>Delete</button></td>
-                            </tc>
-                        ))
-                    }
-                </tr>
-            </table> */}
             <div>
                 <div style={{fontSize:"1.5rem"}}>Input</div>
             {
@@ -157,11 +140,13 @@ const UploadTestCases = () => {
               ))
             }
             </div>
-            <div> 
+            <div style={{display:"flex",flexDirection:"column"}}> 
             {
+             
               output.map((value,idx)=>(
-                  <button key={idx} className='DeleteButton' onClick={()=>handleDeleteTC(value,output[idx])}>Delete</button>
+                  <button key={idx} style={{marginTop:'1rem'}} className='DeleteButton' onClick={()=>handleDeleteTC(value,output[idx])}>Delete</button>
               ))
+              
             }
             </div>
         </div>

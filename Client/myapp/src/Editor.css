@@ -152,12 +152,9 @@ td,th{
     font-size: 1.05rem;
 }
 @media only screen and (max-width: 80em) {
-    .Editor{
-        margin-left:20rem;
-        margin-top:1rem;
-    }
-    .EditorInputOutput{
-        display:flex
+    .TheWholeEditor{
+        display: flex;
+        flex-direction: column;
     }
 }
 

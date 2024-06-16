@@ -3,13 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../Home/Home.css';
 import toast from 'react-hot-toast'
-
+import {homepageQuestionState} from "../store/atoms/HomepageQuestion";
+import {useRecoilState,useRecoilValue,useSetRecoilState} from "recoil"
 //"http://localhost:5000/api/question/getallQuestions"
 //${process.env.REACT_APP_BASE_URL}
-const Home = ({setQuestion}) => {
+
+const Home = () => {
   //console.log("hello")
   const [questions,setQuestions]=useState([]);
   const navigate=useNavigate();
+  const sethomepageQuestion=useSetRecoilState(homepageQuestionState)
 
   useEffect(()=>{
       getQuestions()
@@ -45,7 +48,7 @@ const Home = ({setQuestion}) => {
           questions && questions.map((value,idx)=>(
             <div className='QuestionsQuestionDiv'  key={idx}>
               <h4>{idx+1}</h4>
-              <h4 className='QuestionsQuestion'  onClick={()=>{setQuestion(value);navigate("/editor")}}>{value?.title}</h4>
+              <h4 className='QuestionsQuestion'  onClick={()=>{sethomepageQuestion(value);navigate("/editor")}}>{value?.title}</h4>
               <div style={{marginLeft:"1rem",backgroundColor:`${value?.difficulty?.color}`,width:"5rem",borderRadius:"0.5rem",display:"flex",justifyContent:"center"}}>{value?.difficulty?.difficulty}</div>
             </div>
           ))

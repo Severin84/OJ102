@@ -65,28 +65,26 @@
       margin-left: -10rem;
       width:20rem;
     }
+    
 }
 
 @media only screen and (max-width: 64em) {
     .LoginBlock{
-        margin-left: -14rem;
-        background-color: blue;
+        margin-left: -16rem;
         width:20rem;
     }
 }
 
 @media only screen and (max-width: 48em) {
     .LoginBlock{
-        margin-left: -19rem;
-        background-color: brown;
+        margin-left: -24rem;
         width:20rem;
     }
 }
 
 @media only screen and (max-width: 40em) {
     .LoginBlock{
-        margin-left: -23rem;
-        background-color: chocolate;
+        margin-left: -28rem;
         width:20rem;
     }
 }
