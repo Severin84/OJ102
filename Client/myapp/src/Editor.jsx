@@ -4,7 +4,8 @@ import './Editor.css';
 import {Buffer} from "buffer"
 import toast from 'react-hot-toast';
 import {homepageQuestionDetails} from './store/selectors/HomepageQuestion';
-import {useRecoilValue} from "recoil"
+import {useRecoilValue} from "recoil";
+
 const Editor = () => {
   const codeTemplates=[
     {lang:"Java",template:`import java.util.*;\n public class test {\n public static void main(String[] args) \n {\n\tSystem.out.println("Hello World"); \n } \n}`},
@@ -111,7 +112,10 @@ const Editor = () => {
               let bufferData=Buffer.from(data?.data);
               results.push(bufferData.toString().replace(/\r?\n|\r/g, ''));
               })
+
               checkresponse(response?.data?.answers,results)
+
+             // console.log(results)
           }else{
             const formData=new FormData();
             formData.append("file",File)
@@ -160,8 +164,8 @@ const Editor = () => {
           )
          console.log(response);
       }catch(error){
-        // console.log(error)
-         toast.error(error?.response?.data?.message)
+        console.log(error)
+        // toast.error(error?.response?.data?.message)
       }
    }
 
@@ -180,8 +184,8 @@ const Editor = () => {
         )
        // console.log(response);
     }catch(error){
-      // console.log(error)
-       toast.error(error?.response?.data?.message)
+      console.log(error)
+      //  toast.error(error?.response?.data?.message)
     }
  }
 

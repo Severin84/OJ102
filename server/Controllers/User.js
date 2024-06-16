@@ -155,16 +155,19 @@ const updateSolvedQuestion=async(req,res,next)=>{
      if(!pid||!title||!description||!difficulty||!refreshToken||!Language){
         return res.status(400).json({message:'details insufficient'});
      }
+     
       
       let date=new Date();
+   
       let day = date.getDate() <10 ? '0' + date.getDate() : date.getDate();
       let month = (date.getMonth() + 1) <10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1; // Months are zero-based
       let year = date.getFullYear();
       let hours = date.getHours() <10 ?'0'+ date.getHours() : date.getHours();
       let minutes = date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes();
       let currentDate=`${day}/${month}/${year} ${hours}:${minutes}`;
-     // console.log(currentDate)
+      
      const response = await User.updateOne({refreshToken:refreshToken},{$push:{questionSolved:{pid:pid,title:title,description:description,difficulty:difficulty,judgement:judgement,Language:Language,time:currentDate}}});
+    
      if(judgement===true){
        const userdetails=await User.findOne({refreshToken:refreshToken});
        const alreadysolved=userdetails.questionSolved;
@@ -182,8 +185,9 @@ const updateSolvedQuestion=async(req,res,next)=>{
        }
          return  res.status(200).json({message:'It wasnnot the new question'}); 
      }
-         return  res.statue(200).json({message:response});
+         res.statue(200).json({message:response});
   }catch(error){
+   //"Somthing went wrong while updating solved questions"
      return res.status(400).json({message:"Somthing went wrong while updating solved questions"})
   }
 }

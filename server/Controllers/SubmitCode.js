@@ -4,6 +4,7 @@ const TestCaseModel=require("../Models/TestCaseModel.js");
 const fs=require('fs')
 const path=require('path');
 const { User } = require("../Models/UserModel.js");
+const { getMaxListeners } = require("stream");
 
 const getQuestionData=async(req,res,next)=>{
    try{
@@ -12,15 +13,18 @@ const getQuestionData=async(req,res,next)=>{
         return res.status(401).json({message:"Both language and code are required"});
       }
       const testData=await TestCaseModel.TestCaseModel.findOne({pid:pid})
-      const input = testData?.TestCase;
-      const dataString = input[0];
-      const lines = dataString.trim().split('\n');
-      const inputString=testData?.answers[0].trim().split('\n');
+      // const input = testData?.TestCase;
+      const input2=testData?.TestInput;
+      //const dataString = input[0];
+      //const lines = dataString.trim().split('\n');
+      //console.log(lines)
+      // const inputString=testData?.answers[0].trim().split('\n');
+      const inputString2=testData?.TestOutput
       if(lang==='cpp'){
          try{
             let resultArray=[];
-            async function queue(input){
-               for(const item of input){
+            async function queue(input2){
+               for(const item of input2){
                   try{
                      const result =await cplusExecution(code,item);
                      resultArray.push(result)
@@ -29,9 +33,9 @@ const getQuestionData=async(req,res,next)=>{
                      res.status(400).json({message:error})
                   }
                }
-               res.status(200).json({message:resultArray,answers:inputString})
+               res.status(200).json({message:resultArray,answers:inputString2})
             }
-            queue(lines)
+            queue(input2)
          }catch(error){
             res.status(400).json({message:error})
          }
@@ -39,8 +43,8 @@ const getQuestionData=async(req,res,next)=>{
       else if(lang==='C'){
          try{
             let resultArray=[];
-            async function queue(input){
-               for(const item of input){
+            async function queue(input2){
+               for(const item of input2){
                   try{
                      const result =await cExecutions(code,item);
                      resultArray.push(result)
@@ -49,9 +53,9 @@ const getQuestionData=async(req,res,next)=>{
                      res.status(400).json({message:error})
                   }
                }
-               res.status(200).json({message:resultArray,answers:inputString})
+               res.status(200).json({message:resultArray,answers:inputString2})
             }
-            queue(lines)
+            queue(input2)
          }catch(error){
             res.status(400).json({message:error})
          }
@@ -59,8 +63,8 @@ const getQuestionData=async(req,res,next)=>{
       else if(lang==='Java'){
          try{
             let resultArray=[];
-            async function queue(input){
-               for(const item of input){
+            async function queue(input2){
+               for(const item of input2){
                   try{
                      const result =await javaExecutions(code,item);
                      resultArray.push(result)
@@ -69,9 +73,9 @@ const getQuestionData=async(req,res,next)=>{
                      res.status(400).json({message:error})
                   }
                }
-               res.status(200).json({message:resultArray,answers:inputString})
+               res.status(200).json({message:resultArray,answers:inputString2})
             }
-            queue(lines)
+             queue(input2)
          }catch(error){
             res.status(400).json({message:error})
          }
@@ -79,8 +83,8 @@ const getQuestionData=async(req,res,next)=>{
       else {
          try{
             let resultArray=[];
-            async function queue(input){
-               for(const item of input){
+            async function queue(input2){
+               for(const item of input2){
                   try{
                      const result =await pythonExecution(code,item);
                      resultArray.push(result)
@@ -89,9 +93,9 @@ const getQuestionData=async(req,res,next)=>{
                      res.status(400).json({message:error})
                   }
                }
-               res.status(200).json({message:resultArray,answers:inputString})
+               res.status(200).json({message:resultArray,answers:inputString2})
             }
-            queue(lines)
+            queue(input2)
          }catch(error){
             res.status(400).json({message:error})
          }
@@ -115,17 +119,18 @@ const submitcodeFromFile=async(req,res,next)=>{
       const codeFile=path.join(__dirname,'uploads',req.file.filename)
       const testData=await TestCaseModel.TestCaseModel.findOne({pid:pid})
       // console.log(testData)
-      const input = testData?.TestCase;
-      const dataString = input[0];
-      const lines = dataString.trim().split('\n');
-      const inputString=testData?.answers[0].trim().split('\n');
-
+     // const input = testData?.TestCase;
+      const input2=testData?.TestInput
+      // const dataString = input[0];
+      // const lines = dataString.trim().split('\n');
+     // const inputString=testData?.answers[0].trim().split('\n');
+      const inputString2=testData?.TestOutput;
       const filecontent=fs.readFile(codeFile,{encoding:'utf8'}, async function(error,code){
          if(!error && lang==='cpp'){
             try{
                let resultArray=[];
-               async function queue(input){
-                  for(const item of input){
+               async function queue(input2){
+                  for(const item of input2){
                      try{
                         const result =await cplusExecution(code,item,fileName);
                         resultArray.push(result)
@@ -134,9 +139,9 @@ const submitcodeFromFile=async(req,res,next)=>{
                         res.status(400).json({message:error})
                      }
                   }
-                  res.status(200).json({message:resultArray,answers:inputString})
+                  res.status(200).json({message:resultArray,answers:inputString2})
                }
-               queue(lines)
+               queue(input2)
             }catch(error){
                res.status(400).json({message:error})
             }
@@ -144,8 +149,8 @@ const submitcodeFromFile=async(req,res,next)=>{
          else if(!error && lang==='C'){
             try{
                let resultArray=[];
-               async function queue(input){
-                  for(const item of input){
+               async function queue(input2){
+                  for(const item of input2){
                      try{
                         const result =await cExecutions(code,item,fileName);
                         resultArray.push(result)
@@ -154,9 +159,9 @@ const submitcodeFromFile=async(req,res,next)=>{
                         res.status(400).json({message:error})
                      }
                   }
-                  res.status(200).json({message:resultArray,answers:inputString})
+                  res.status(200).json({message:resultArray,answers:inputString2})
                }
-               queue(lines)
+               queue(input2)
             }catch(error){
                res.status(400).json({message:error})
             }
@@ -164,8 +169,8 @@ const submitcodeFromFile=async(req,res,next)=>{
          else if(!error && lang==='Java'){
             try{
                let resultArray=[];
-               async function queue(input){
-                  for(const item of input){
+               async function queue(input2){
+                  for(const item of input2){
                      try{
                         const result =await javaExecutions(code,item,fileName);
                         resultArray.push(result)
@@ -174,9 +179,9 @@ const submitcodeFromFile=async(req,res,next)=>{
                         res.status(400).json({message:error})
                      }
                   }
-                  res.status(200).json({message:resultArray,answers:inputString})
+                  res.status(200).json({message:resultArray,answers:inputString2})
                }
-               queue(lines)
+               queue(input2)
             }catch(error){
                res.status(400).json({message:error})
             }
@@ -184,8 +189,8 @@ const submitcodeFromFile=async(req,res,next)=>{
          else if(!error && lang==='python'){
             try{
                let resultArray=[];
-               async function queue(input){
-                  for(const item of input){
+               async function queue(input2){
+                  for(const item of input2){
                      try{
                         const result =await pythonExecution(code,item,fileName);
                         resultArray.push(result)
@@ -194,9 +199,9 @@ const submitcodeFromFile=async(req,res,next)=>{
                         res.status(400).json({message:error})
                      }
                   }
-                  res.status(200).json({message:resultArray,answers:inputString})
+                  res.status(200).json({message:resultArray,answers:inputString2})
                }
-               queue(lines)
+               queue(input2)
             }catch(error){
                res.status(400).json({message:error})
             }
