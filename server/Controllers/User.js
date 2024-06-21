@@ -122,7 +122,7 @@ const refershAccessToken=async(req,res,next)=>{
 
      return res.status(200).cookies("accessToken",accessToken,options).cookies("refreshToken",newRefreshToken,options).json({message:'Access token refreshed'})
   }catch(error){
-     res.status(400).json({message:"something went wrong while refereshing the token"})
+     return res.status(400).json({message:"something went wrong while refereshing the token"})
   }
 }
 
@@ -151,8 +151,9 @@ const refershAccessToken=async(req,res,next)=>{
 const updateSolvedQuestion=async(req,res,next)=>{
   try{
      const {pid,title,description,difficulty,judgement,Language}=req.body;
-     const {refreshToken}=req.cookies;
-     if(!pid||!title||!description||!difficulty||!refreshToken||!Language){
+     const token=req.header("Authorization")?.replace("Bearer ", "");
+
+     if(!pid||!title||!description||!difficulty||!token||!Language){
         return res.status(400).json({message:'details insufficient'});
      }
      
@@ -165,11 +166,13 @@ const updateSolvedQuestion=async(req,res,next)=>{
       let hours = date.getHours() <10 ?'0'+ date.getHours() : date.getHours();
       let minutes = date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes();
       let currentDate=`${day}/${month}/${year} ${hours}:${minutes}`;
+
+      const decodedToken= jwt.verify(token,process.env.ACCESS_TOKEN_SECRET);
       
-     const response = await User.updateOne({refreshToken:refreshToken},{$push:{questionSolved:{pid:pid,title:title,description:description,difficulty:difficulty,judgement:judgement,Language:Language,time:currentDate}}});
+      const response = await User.updateOne({_id:decodedToken?._id},{$push:{questionSolved:{pid:pid,title:title,description:description,difficulty:difficulty,judgement:judgement,Language:Language,time:currentDate}}});
     
      if(judgement===true){
-       const userdetails=await User.findOne({refreshToken:refreshToken});
+       const userdetails=await User.findOne({_id:decodedToken?._id});
        const alreadysolved=userdetails.questionSolved;
        //const result=alreadysolved.some((element)=>element.pid===pid);
        let count=0;
@@ -180,7 +183,7 @@ const updateSolvedQuestion=async(req,res,next)=>{
            }
        }
        if(count===1){
-         const solvedcorrectly=await User.updateOne({refreshToken:refreshToken},{$inc:{numberofquestionsolved:1}});
+         const solvedcorrectly=await User.updateOne({_id:decodedToken?._id},{$inc:{numberofquestionsolved:1}});
          return res.status(200).json({message:solvedcorrectly})
        }
          return  res.status(200).json({message:'It wasnnot the new question'}); 
@@ -188,7 +191,7 @@ const updateSolvedQuestion=async(req,res,next)=>{
          res.statue(200).json({message:response});
   }catch(error){
    //"Somthing went wrong while updating solved questions"
-     return res.status(400).json({message:"Somthing went wrong while updating solved questions"})
+      return res.status(400).json({message:"Somthing went wrong while updating solved questions"})
   }
 }
 
@@ -198,28 +201,66 @@ const getalluser=async(req,res,next)=>{
      const filteredUsers=users.filter((user)=>user.role==='user')
      return res.status(200).json({message:filteredUsers})
   }catch(error){
-     return res.status(400).json({message:"something went wrong while getting all users"})
+      return res.status(400).json({message:"something went wrong while getting all users"})
   }
 }
 
 const getUser=async(req,res,next)=>{
   try{
-     const{refreshToken}=req.cookies;
-     if(!refreshToken){
+     const token=req.header("Authorization")?.replace("Bearer ", "");
+     //console.log(token)
+     if(!token){
       return res.status(400).json({message:"User not found"});
      }
-
-     const user=await User.findOne({refreshToken:refreshToken});
-
+     const decodedToken= jwt.verify(token,process.env.ACCESS_TOKEN_SECRET);
+     //const user=await User.findOne({refreshToken:token});
+     const user=await User.findById({_id:decodedToken?._id}).select("-password -refreshToken");
      if(!user){
         return res.status(400).json({message:"User does not exist"});
      }
 
      return res.status(200).json({message:user});
   }catch(error){
-     return res.status(400).json({message:"something went wrong while getting the user"});
+     return  res.status(400).json({message:"something went wrong while getting the user"});
   }
 }
+
+const getAdmin=async(req,res,next)=>{
+    try{
+       const admin=await User.findOne({role:"admin"}).select("-refreshToken");
+       if(!admin){
+          return res.status(401).json({message:"Admin not found"});
+       }
+       res.status(200).json({message:admin});
+    }catch(error){
+       return res.status(400).json({message:'something went wrong while getting the admin'})
+    }
+}
+
+const updateAdmin=async(req,res,next)=>{
+   try{
+      const {email,password}=req.body;
+
+      const admin=await User.findOne({role:"admin"});
+
+      if(!admin){
+         return res.status(401).json({message:"Admin not found"});
+      }
+      const hashedPass=await bcrypt.hash(password,10)
+      const response=await User.updateOne({_id:admin?._id},{email:email,password:hashedPass})
+
+      res.status(200).json({message:response});
+   }catch(error){
+       return res.status(400).json({message:'something went wrong while updating the admin'})
+   }
+}
 module.exports={
-    register,login,updateSolvedQuestion,getalluser,getUser,logout
+    register,
+    login,
+    updateSolvedQuestion,
+    getalluser,
+    getUser,
+    logout,
+    getAdmin,
+    updateAdmin
 }

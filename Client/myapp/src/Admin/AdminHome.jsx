@@ -5,6 +5,7 @@ import AllUsers from './Components/AllUsers'
 import '../Admin/AdminHome.css';
 import UpadateQuestion from './Components/UpadateQuestion';
 import UploadTestCases from './Components/UploadTestCases';
+import AdminPage from './Components/AdminPage';
 
 const AdminHome = () => {
     const [component,setComponent]=useState(<QuestionsUpload/>);
@@ -18,7 +19,7 @@ const AdminHome = () => {
                 <div className='AdminAsideAllQuestions' onClick={()=>setComponent(<AllQuestions  setComponent={setComponent}/>)}>AllQuestions</div>
                 <div className="updateQuestion" onClick={()=>setComponent(<UpadateQuestion questionTobeupdated={questionTobeupdated} />)}>Update Question</div>
                 <div className="uploadTestCases" onClick={()=>setComponent(<UploadTestCases/>)}>Upload TestCases</div>
-                {/* <div className='AminAsideAllUsers'  onClick={()=>setComponent(<AllUsers/>)}>AllUsers</div> */}
+                <div className='AminAsideAllUsers'  onClick={()=>setComponent(<AdminPage/>)}>Admin Page</div>
                 </div>
             </aside>
             <div>

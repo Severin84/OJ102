@@ -1,0 +1,89 @@
+.AdminPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.AdminTitle{
+    display: flex;
+    justify-content: center;
+}
+.AdminPageInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.AdminCurrent{
+    display: flex;
+    justify-content: center;
+}
+.AdmincurrentInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.AdminUpdate{
+    display: flex;
+    justify-content: center; 
+}
+.AdminUpadateInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.AdminConfirm{
+    display: flex;
+    justify-content: center;   
+}
+.AdminConfirmInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.AdminUpdateButtondiv{
+    display: flex;
+    justify-content: center;  
+}
+.AdmincurrentEmail{
+    display: flex;
+    justify-content: center;  
+}
+.AdmincurrentPassword{
+    display: flex;
+    justify-content: center;  
+}
+.AdminUpdateEmail{
+    display: flex;
+    justify-content: center;  
+}
+.AdminUpdatePassword{
+    display: flex;
+    justify-content: center;  
+}
+.AdminConfirmEmail{
+    display: flex;
+    justify-content: center;  
+}
+.AdminConfirmPassword{
+    display: flex;
+    justify-content: center;  
+}
+.AdminCurrentDiv{
+    margin-top: 2rem;
+}
+.AdminPageUpdateDiv{
+    margin-top: 2rem;
+}
+.AdminPageConfirmDiv{
+    margin-top: 2rem;
+}
+.AdminUpdateButton{
+    width: 6rem;
+    height: 4rem;
+    border-radius: 0.5rem;
+    background-color: #c91010;
+    font-size: 1.3rem;
+    color: white;
+}
+.AdminUpdateButton:active{
+    transform: scale(0.95);
+}

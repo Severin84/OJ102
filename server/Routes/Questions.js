@@ -3,7 +3,6 @@ const { createQuestions, getQuestion, updateQuestion, deleteQuestion, getQuestio
 const { verifyJWT } = require('../Middleware/Auth');
 const router=express.Router();
 
-
 router.post ("/createQuestion",verifyJWT,createQuestions);
 router.get("/getQuestion",verifyJWT,getQuestion);
 router.get("/getallQuestions",verifyJWT,getQuestions)

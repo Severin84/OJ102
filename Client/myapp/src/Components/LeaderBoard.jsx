@@ -12,10 +12,11 @@ const LeaderBoard = () => {
     },[])
     const getData=async()=>{
       try{
-          const response=await axios.get('http://localhost:5000/api/auth/getallusers',
+          const response=await axios.get(`${process.env.REACT_APP_BASE_URL}/api/auth/getallusers`,
             {
                 headers:{
-                  'Content-Type':'application/json'
+                  'Content-Type':'application/json',
+                  'Authorization':'Bearer '+localStorage.getItem('token')
                 },
                 withCredentials:true
             }
@@ -23,7 +24,6 @@ const LeaderBoard = () => {
         //console.log(response?.data?.message);
         setUsers(response?.data?.message?.sort((a,b)=>b.numberofquestionsolved-a.numberofquestionsolved))
       }catch(error){
-        console.log(error)
         toast.error(error?.response?.data?.message)
         navigate('/login')
       }

@@ -9,7 +9,7 @@ const Header = () => {
  
  const handleLogout= async()=>{
     try{
-       const response=await axios.post('http://localhost:5000/api/auth/logout',
+       const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/logout`,
         {
 
         }
@@ -20,9 +20,10 @@ const Header = () => {
       );
        //console.log(response)
        navigate('/login')
+       localStorage.setItem('token',null)
     }catch(error){
         toast.error(error?.response?.data?.message)
-        navigate('/login')
+        navigate('/login');
     }
  }
  

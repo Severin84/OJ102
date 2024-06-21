@@ -13,7 +13,7 @@ const Login = () => {
 
   const userLogin=async()=>{
     try{
-       const response=await axios.post(`http://localhost:5000/api/auth/login`,
+       const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/login`,
       {
         email:email,
         password:password
@@ -31,6 +31,8 @@ const Login = () => {
          }else{
           navigate("/home")
          }
+         console.log(response)
+         localStorage.setItem("token",response?.data?.data?.refreshToken)
        }else{
           navigate("/login")
        }
@@ -38,6 +40,7 @@ const Login = () => {
     }catch(error){
       // console.log(error)
       toast.error(error?.response?.data?.message)
+      localStorage.setItem("token",null);
     }
   }
   

@@ -220,9 +220,14 @@ const submitcodeFromFile=async(req,res,next)=>{
 const solvedQuestion=async(req,res,next)=>{
     try{
         //console.log(req?.cookies)
-        const {accessToken,refreshToken,question}=req?.cookies;
+        const {question}=req?.body;
+        const token=req.header("Authorization")?.replace("Bearer ", "");
         //const response=await User.findOneAndUpdate({refreshToken:refreshToken},{questionSolved})
-          const user=await User.findOne({refreshToken:refreshToken})
+        if(!question||!token){
+            return res.status(401).json({message:"Insufficient data"});
+        }
+         const decodedToken= jwt.verify(token,process.env.ACCESS_TOKEN_SECRET);
+         const user=await User.findOne({_id:decodedToken?._id})
          //  console.log(user)
          // user.questionSolved.push(question);
          // await user.save()

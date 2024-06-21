@@ -25,13 +25,14 @@ const UploadTestCases = () => {
 
     const uploadInputOutputTestCases=async()=>{
        try{
-           const response = await axios.post('http://localhost:5000/api/tc/createInputOutputTC',{
+           const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/tc/createInputOutputTC`,{
                 TestInput:inputTestCase,
                 TestOutput:outputTestCase,
                 pid:pid
            },{
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                    'Authorization':'Bearer '+localStorage.getItem('token')
                 },
                 withCredentials:true
            })
@@ -45,12 +46,13 @@ const UploadTestCases = () => {
 
     const getInputOutputTestCases=async()=>{
         try{
-           const response=await axios.post('http://localhost:5000/api/tc/getInputOutputTC',
+           const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/tc/getInputOutputTC`,
            {
                 pid:pid
            },{
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                    'Authorization':'Bearer '+localStorage.getItem('token')
                 },
                 withCredentials:true
            })
@@ -64,15 +66,19 @@ const UploadTestCases = () => {
     }
 
     const handleDeleteTC=async(input,output)=>{
+        // console.log("input->"+input)
+        // console.log("output->"+output)
+        // console.log("pid->"+pid)
         try{
-            const response=await axios.post('http://localhost:5000/api/tc/deleteInputOutPutTC',
+            const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/tc/deleteInputOutPutTC`,
                 {
                      pid:pid,
                      input:input,
                      output:output
                 },{
                      headers:{
-                         'Content-Type':'application/json'
+                         'Content-Type':'application/json',
+                         'Authorization':'Bearer '+localStorage.getItem('token')
                      },
                      withCredentials:true
                 })
@@ -144,7 +150,7 @@ const UploadTestCases = () => {
             {
              
               output.map((value,idx)=>(
-                  <button key={idx} style={{marginTop:'1rem'}} className='DeleteButton' onClick={()=>handleDeleteTC(value,output[idx])}>Delete</button>
+                  <button key={idx} style={{marginTop:'1rem'}} className='DeleteButton' onClick={()=>handleDeleteTC(idx,idx)}>Delete</button>
               ))
               
             }

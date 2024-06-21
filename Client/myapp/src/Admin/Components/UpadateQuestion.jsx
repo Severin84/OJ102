@@ -36,21 +36,21 @@ const [Difficulty,setDifficulty]=useState(question?.difficulty?.difficulty);
 
     const handleUpdateQuestion=async()=>{
        try{
-           const response=await axios.patch('http://localhost:5000/api/question/updateQuestion',{
+           const response=await axios.patch(`${process.env.REACT_APP_BASE_URL}/api/question/updateQuestion`,{
              title:title,
              discription:discription,
              pid:question?.pid
            },
            {
               headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+localStorage.getItem('token')
             },
             withCredentials:true
            }
           )
        }catch(error){
           console.log(error)
-
        }
     }
 

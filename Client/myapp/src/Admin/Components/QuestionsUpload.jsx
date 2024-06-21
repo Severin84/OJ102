@@ -39,7 +39,7 @@ const QuestionsUpload = () => {
         })
         //'http://localhost:5000/api/question/createQuestion'
         //${process.env.REACT_APP_BASE_URL}/question/createQuestion
-        const response=await axios.post(`http://localhost:5000/api/question/createQuestion`,{
+        const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/question/createQuestion`,{
             title:title,
             discription:discription,
             pid:pid,
@@ -47,7 +47,8 @@ const QuestionsUpload = () => {
         },
         {
             headers:{
-               'Content-Type':'application/json'
+               'Content-Type':'application/json',
+               'Authorization':'Bearer '+localStorage.getItem('token')
             },
             withCredentials:true
         }
@@ -58,14 +59,15 @@ const QuestionsUpload = () => {
     const uploadTestCases=async()=>{
         //'http://localhost:5000/api/tc/createTC'
         //${process.env.REACT_APP_BASE_URL}/tc/createTC
-        const response=await axios.post(`http://localhost:5000/api/tc/createTC`,{
+        const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/tc/createTC`,{
             TestCase:testCase,
             answers:correctAns,
             pid:pid,
         },
         {
             headers:{
-               'Content-Type':'application/json'
+               'Content-Type':'application/json',
+               'Authorization':'Bearer '+localStorage.getItem('token')
             },
             withCredentials:true
            })

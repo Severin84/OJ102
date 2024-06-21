@@ -50,14 +50,16 @@ const Editor = () => {
         let resp=[];
         //'http://localhost:5000/api/code/compile'
         //${process.env.REACT_APP_BASE_URL}
-        const response =await axios.post(`http://localhost:5000/api/code/compile`,{
+        //`https://backend.sprintcode.fun/api/code/compile`
+        const response =await axios.post(`${process.env.REACT_APP_BASE_URL}/api/code/compile`,{
           lang:Lang,
           code:code,
           input:testInput
         },
         {
           headers:{
-             'Content-Type':'application/json'
+             'Content-Type':'application/json',
+             'Authorization':'Bearer '+localStorage.getItem('token')
           },
           withCredentials:true
          })
@@ -72,10 +74,11 @@ const Editor = () => {
         formData.append("input",testInput)
         //'http://localhost:5000/api/code/upload'
         //${process.env.REACT_APP_BASE_URL}/code/upload
-        const response =await axios.post(`http://localhost:5000/api/code/upload`,formData,
+        const response =await axios.post(`${process.env.REACT_APP_BASE_URL}/api/code/upload`,formData,
         {
           headers:{
-             'Content-Type':'multipart/form-data'
+             'Content-Type':'multipart/form-data',
+             'Authorization':'Bearer '+localStorage.getItem('token')
           },
           withCredentials:true
          })
@@ -85,7 +88,6 @@ const Editor = () => {
       }
     }catch(error){
       setCodeError(Buffer.from(error?.response?.data?.message).toString()||'Error occured')
-
     }
     
   }
@@ -96,14 +98,15 @@ const Editor = () => {
           if(File===null){
             //'http://localhost:5000/api/submit/submitCode'
             //${process.env.REACT_APP_BASE_URL}/submit/submitCode
-              const response=await axios.post(`http://localhost:5000/api/submit/submitCode`,{
+              const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/submit/submitCode`,{
                 lang:Lang,
                 code:code,
                 pid:homepageQuestionDetailsValue?.pid
               },
               {
                 headers:{
-                   'Content-Type':'application/json'
+                   'Content-Type':'application/json',
+                   'Authorization':'Bearer '+localStorage.getItem('token')
                 },
                 withCredentials:true
                })
@@ -124,10 +127,11 @@ const Editor = () => {
             console.log(formData)
             //'http://localhost:5000/api/submit/submitupload'
             //${process.env.REACT_APP_BASE_URL}/submit/submitupload
-            const response=await axios.post(`http://localhost:5000/api/submit/submitupload`,formData,
+            const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/submit/submitupload`,formData,
             {
               headers:{
-                 'Content-Type':'multipart/form-data'
+                 'Content-Type':'multipart/form-data',
+                 'Authorization':'Bearer '+localStorage.getItem('token')
               },
               withCredentials:true
              }
@@ -154,10 +158,11 @@ const Editor = () => {
          //console.log(question)
         //"http://localhost:5000/api/submit/updateSolvedQuestion"
         //${process.env.REACT_APP_BASE_URL}/submit/updateSolvedQuestion       discription
-          const response=await axios.post(`http://localhost:5000/api/auth/userSolvedQuestion`,{pid:question?.pid,title:question?.title,description:question?.discription,difficulty:question?.difficulty,judgement:true,Language:Lang},
+          const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/userSolvedQuestion`,{pid:question?.pid,title:question?.title,description:question?.discription,difficulty:question?.difficulty,judgement:true,Language:Lang},
             {
               headers:{
-                 'Content-Type':'application/json'
+                 'Content-Type':'application/json',
+                 'Authorization':'Bearer '+localStorage.getItem('token')
               },
               withCredentials:true
              }
@@ -174,10 +179,11 @@ const Editor = () => {
        //console.log(question)
       //"http://localhost:5000/api/submit/updateSolvedQuestion"
       //${process.env.REACT_APP_BASE_URL}/submit/updateSolvedQuestion       discription
-        const response=await axios.post(`http://localhost:5000/api/auth/userSolvedQuestion`,{pid:question?.pid,title:question?.title,description:question?.discription,difficulty:question?.difficulty,judgement:false,Language:Lang},
+        const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/userSolvedQuestion`,{pid:question?.pid,title:question?.title,description:question?.discription,difficulty:question?.difficulty,judgement:false,Language:Lang},
           {
             headers:{
-               'Content-Type':'application/json'
+               'Content-Type':'application/json',
+               'Authorization':'Bearer '+localStorage.getItem('token')
             },
             withCredentials:true
            }
@@ -249,13 +255,14 @@ const Editor = () => {
      try{
       //"http://localhost:5000/api/tc/getTC"
       //${process.env.REACT_APP_BASE_URL}/tc/getTC
-        const response=await axios.post(`http://localhost:5000/api/tc/getTC`,
+        const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/tc/getTC`,
         {
           pid:homepageQuestionDetailsValue?.pid
         },
           {
             headers:{
-               'Content-Type':'application/json'
+               'Content-Type':'application/json',
+               'Authorization':'Bearer '+localStorage.getItem('token')
             },
             withCredentials:true
            }
@@ -266,7 +273,7 @@ const Editor = () => {
        })
         
      }catch(error){
-      // console.log(error)
+      console.log(error)
       toast.error(error?.response?.data?.message)
      }
    }
@@ -281,10 +288,11 @@ const Editor = () => {
 
    const gettheuser=async()=>{
      try{
-         const response=await axios.get('http://localhost:5000/api/auth/getuser',
+         const response=await axios.get(`${process.env.REACT_APP_BASE_URL}/api/auth/getuser`,
            {
             headers:{
-               'Content-Type':'application/json'
+               'Content-Type':'application/json',
+               'Authorization':'Bearer '+localStorage.getItem('token')
             },
             withCredentials:true
            }
@@ -295,7 +303,7 @@ const Editor = () => {
          console.log(questHist)
          setcurrentQuestionHistory(questHist);
         }catch(error){
-           //console.log(error)
+           console.log(error)
            toast.error(error?.response?.data?.message)
         }
    }

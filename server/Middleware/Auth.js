@@ -4,9 +4,9 @@ const {User} = require('../Models/UserModel');
 const verifyJWT=async(req,res,next)=>{
   try{
       const token=req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
-      // console.log("V");
-      // console.log(token);
-      // console.log("^")
+      //  console.log("V");
+      //  console.log(token);
+      //  console.log("^")
 
       if(token===undefined){
         return res.status(401).json({message:"Unauthorized request"})

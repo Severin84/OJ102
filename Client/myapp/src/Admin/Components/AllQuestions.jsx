@@ -12,10 +12,11 @@ const AllQuestions = ({ setComponent}) => {
         try{
           //"http://localhost:5000/api/question/getallQuestions"
       //${process.env.REACT_APP_BASE_URL}/question/getallQuestions
-          const data=await axios.get(`http://localhost:5000/api/question/getallQuestions`,
+          const data=await axios.get(`${process.env.REACT_APP_BASE_URL}/api/question/getallQuestions`,
             {
               headers:{
-                 'Content-Type':'application/json'
+                 'Content-Type':'application/json',
+                 'Authorization':'Bearer '+localStorage.getItem('token')
               },
               withCredentials:true
              }
@@ -32,7 +33,13 @@ const AllQuestions = ({ setComponent}) => {
 
     const deleteQuestion=async()=>{
        try{
-          const response=await axios.delete('http://localhost:5000/api/question/deleteQuestion')
+          const response=await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/question/deleteQuestion`,{
+            headers:{
+              'Content-Type':'application/json',
+              'Authorization':'Bearer '+localStorage.getItem('token')
+           },
+           withCredentials:true
+          })
        }catch(error){
          console.log(error)
        }

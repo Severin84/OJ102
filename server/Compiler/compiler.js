@@ -202,7 +202,7 @@ const javaExecutions=async(data,input,filename)=>{
                     run.stderr.on('data',(data)=>{
                         console.error(`Error: ${data}`)
                        
-                        reject(data)
+                       reject(data)
                     })
 
                     run.on('close',(code)=>{
@@ -225,7 +225,6 @@ const javaExecutions=async(data,input,filename)=>{
    }catch(error){
      console.log("javaE: "+error)
    }
-
 }
 
 const pythonExecution=async(data,input,filename)=>{

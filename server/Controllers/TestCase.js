@@ -119,23 +119,29 @@ const getInputandOutputTestCases=async(req,res,next)=>{
 const deleteTestInputAndOutPut=async(req,res,next)=>{
    try{
       const {pid,input,output}=req.body;
-   
-      if(!pid||!input||!output){
+      // console.log("1->1")
+      // console.log("pid:"+pid)
+      // console.log("input:"+input)
+      // console.log("output:"+output)
+      if(pid===undefined||input===undefined||output===undefined){
         return res.status(401).json({message:"Pid required"})
       }
-
+      // console.log("2->2")
       const currentTestData=await TC.TestCaseModel.findOne({pid:pid});
       if(!currentTestData){
         return res.status(401).json({message:"Invalid PID"});
       }
-      
+      // console.log("3->3")
+      // console.log(input)
+      // console.log("kjj")
+      // console.log(output)
       const TestInputData=currentTestData.TestInput;
       
       const TestOutputData=currentTestData.TestOutput;
 
-      const deletedInputData=TestInputData.filter((ele)=>ele!==input);
+      const deletedInputData=TestInputData.filter((ele,idx)=>idx!==input);
     
-      const deletedOutputData=TestOutputData.filter((ele)=>ele!==output);
+      const deletedOutputData=TestOutputData.filter((ele,idx)=>idx!==output);
       
       const updateData=await TC.TestCaseModel.updateOne({pid:pid},{TestInput:deletedInputData,TestOutput:deletedOutputData});
 
