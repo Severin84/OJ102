@@ -14,7 +14,7 @@ The platform also has a leader board you it to have a little competition amongst
  * Database
    - MongoDB
 
-## Demo Video[https://www.sprintcode.fun/]
+## Demo Video(https://www.sprintcode.fun/)
 
 ## Future Plans 
    - I am looking forward to upgrade the UI of the platform and a few changes in compiler.
