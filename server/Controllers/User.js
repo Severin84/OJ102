@@ -72,12 +72,16 @@ const login=async(req,res,next)=>{
         return res.status(401).json({message:"Invalid Email or Password"});
       }
       const {accessToken,refreshToken}=await generateAccessAndRefereshToken(user._id);
-      const loggedInUser=await User.findById(user._id).select("-password -refreshToken")
+
+      const loggedInUser=await User.findById(user._id).select("-password -refreshToken");
+
+      const finaluser=await User.updateOne({_id:user._id},{refreshToken:refreshToken});
+      const getthatuser=await User.findOne({_id:user._id})
       const options={
         httpOnly:true,
         secure:true,
       }     
-      return res.status(200).cookie("accessToken",accessToken,options).cookie("refreshToken",refreshToken,options).json({data:user})
+      return res.status(200).cookie("accessToken",accessToken,options).cookie("refreshToken",refreshToken,options).json({data:getthatuser})
     }catch(error){
        return res.status(500).json({message:'An error occured while logging'})
     }

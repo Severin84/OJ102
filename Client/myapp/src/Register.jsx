@@ -25,7 +25,7 @@ const Register = () => {
        navigate("/register")
      }
       toast.success("Registered Successfully")
-     console.log(response);
+    // console.log(response);
     }catch(error){
       //console.log(error)
       toast.error(error?.response?.data?.message)

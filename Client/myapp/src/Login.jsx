@@ -24,14 +24,15 @@ const Login = () => {
         },
         withCredentials:true
        })
-       //console.log(response)
+      // console.log(response)
        if(response.status===200){
          if(response?.data?.data?.role==="admin"){
           navigate("/admin")
          }else{
           navigate("/home")
          }
-         console.log(response)
+
+         //console.log(response)
          localStorage.setItem("token",response?.data?.data?.refreshToken)
        }else{
           navigate("/login")
