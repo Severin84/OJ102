@@ -94,38 +94,37 @@ const logout=async(req,res,next)=>{
 
 }
 
-const refershAccessToken=async(req,res,next)=>{
-  try{
-     const incomingRefeshToken=req.cookies.refreshTokn||req.body.refreshToken;
+// const refershAccessToken=async(req,res,next)=>{
+//   try{
+//      const incomingRefeshToken=req.cookies.refreshTokn||req.body.refreshToken;
 
-     if(!incomingRefeshToken){
-        return res.status(401).json({message:"unauthorized request"})
-     }
+//      if(!incomingRefeshToken){
+//         return res.status(401).json({message:"unauthorized request"})
+//      }
 
-     const decodedToken=jwt.verify(incomingRefeshToken,process.env.REFRESH_TOKEN_SECRET);
+//      const decodedToken=jwt.verify(incomingRefeshToken,process.env.REFRESH_TOKEN_SECRET);
 
-     const user=await User.findById(decodedToken?._id)
+//      const user=await User.findById(decodedToken?._id)
 
-     if(!user){
-        return res.status(401).json({message:"Invalid refresh token"})
-     }
+//      if(!user){
+//         return res.status(401).json({message:"Invalid refresh token"})
+//      }
 
-     if(incomingRefeshToken!==user?.refreshToken){
-      return res.status(401).json({message:"Refersh token is expired or used"})
-     }
+//      if(incomingRefeshToken!==user?.refreshToken){
+//       return res.status(401).json({message:"Refersh token is expired or used"})
+//      }
 
-     const options={
-      httpOnly:true,
-      secure:true
-     }
+//      const options={
+//       httpOnly:true,
+//       secure:true
+//      }
+//      const {accessToken,newRefreshToken}=await generateAccessAndRefereshToken(user._id)
 
-     const {accessToken,newRefreshToken}=await generateAccessAndRefereshToken(user._id)
-
-     return res.status(200).cookies("accessToken",accessToken,options).cookies("refreshToken",newRefreshToken,options).json({message:'Access token refreshed'})
-  }catch(error){
-     return res.status(400).json({message:"something went wrong while refereshing the token"})
-  }
-}
+//      return res.status(200).cookies("accessToken",accessToken,options).cookies("refreshToken",newRefreshToken,options).json({message:'Access token refreshed'})
+//   }catch(error){
+//      return res.status(400).json({message:"something went wrong while refereshing the token"})
+//   }
+// }
 
 
 
@@ -137,8 +136,6 @@ const updateSolvedQuestion=async(req,res,next)=>{
      if(!pid||!title||!description||!difficulty||!token||!Language){
         return res.status(400).json({message:'details insufficient'});
      }
-     
-      
       let date=new Date();
    
       let day = date.getDate() <10 ? '0' + date.getDate() : date.getDate();
@@ -151,7 +148,6 @@ const updateSolvedQuestion=async(req,res,next)=>{
       const decodedToken= jwt.verify(token,process.env.ACCESS_TOKEN_SECRET);
       
       const response = await User.updateOne({_id:decodedToken?._id},{$push:{questionSolved:{pid:pid,title:title,description:description,difficulty:difficulty,judgement:judgement,Language:Language,time:currentDate}}});
-    
      if(judgement===true){
        const userdetails=await User.findOne({_id:decodedToken?._id});
        const alreadysolved=userdetails.questionSolved;
@@ -195,7 +191,6 @@ const getUser=async(req,res,next)=>{
      if(!user){
         return res.status(400).json({message:"User does not exist"});
      }
-
      return res.status(200).json({message:user});
   }catch(error){
      return  res.status(400).json({message:"something went wrong while getting the user"});
@@ -217,9 +212,7 @@ const getAdmin=async(req,res,next)=>{
 const updateAdmin=async(req,res,next)=>{
    try{
       const {email,password}=req.body;
-
       const admin=await User.findOne({role:"admin"});
-
       if(!admin){
          return res.status(401).json({message:"Admin not found"});
       }
