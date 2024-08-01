@@ -11,7 +11,6 @@ const cors=require('cors');
 const cookieParser = require('cookie-parser');
 const app=express();
 
-
 app.use(express.json());
 dotenv.config()
 app.use(cors({origin:process.env.CLIENT_URL,credentials:true}))

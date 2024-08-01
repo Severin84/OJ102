@@ -12,7 +12,6 @@ const [title,setTitle]=useState();
 const [discription,setDiscription]=useState();
 const [Difficulty,setDifficulty]=useState(question?.difficulty?.difficulty);
 
-
     const updateDis=(value)=>{
       setDiscription(value)
     }

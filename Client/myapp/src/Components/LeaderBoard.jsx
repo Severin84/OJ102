@@ -7,6 +7,7 @@ const LeaderBoard = () => {
   const navigate=useNavigate();
   const [users,setUsers]=useState([])
 
+  
     useEffect(()=>{
       getData()
     },[])

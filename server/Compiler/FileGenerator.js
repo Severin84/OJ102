@@ -9,6 +9,7 @@ if(!fs.existsSync(dirCodes)){
     fs.mkdirSync(dirCodes,{recursive:true});
 }
 
+
 const generateFile=async(format,content)=>{
     if(format==='Java'){
         const fileName='test'

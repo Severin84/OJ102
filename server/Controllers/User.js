@@ -96,37 +96,37 @@ const logout=async(req,res,next)=>{
 
 
 
-// const refershAccessToken=async(req,res,next)=>{
-//   try{
-//      const incomingRefeshToken=req.cookies.refreshTokn||req.body.refreshToken;
+const refershAccessToken=async(req,res,next)=>{
+  try{
+     const incomingRefeshToken=req.cookies.refreshTokn||req.body.refreshToken;
 
-//      if(!incomingRefeshToken){
-//         return res.status(401).json({message:"unauthorized request"})
-//      }
+     if(!incomingRefeshToken){
+        return res.status(401).json({message:"unauthorized request"})
+     }
 
-//      const decodedToken=jwt.verify(incomingRefeshToken,process.env.REFRESH_TOKEN_SECRET);
+     const decodedToken=jwt.verify(incomingRefeshToken,process.env.REFRESH_TOKEN_SECRET);
 
-//      const user=await User.findById(decodedToken?._id)
+     const user=await User.findById(decodedToken?._id)
 
-//      if(!user){
-//         return res.status(401).json({message:"Invalid refresh token"})
-//      }
+     if(!user){
+        return res.status(401).json({message:"Invalid refresh token"})
+     }
 
-//      if(incomingRefeshToken!==user?.refreshToken){
-//       return res.status(401).json({message:"Refersh token is expired or used"})
-//      }
+     if(incomingRefeshToken!==user?.refreshToken){
+      return res.status(401).json({message:"Refersh token is expired or used"})
+     }
 
-//      const options={
-//       httpOnly:true,
-//       secure:true
-//      }
-//      const {accessToken,newRefreshToken}=await generateAccessAndRefereshToken(user._id)
+     const options={
+      httpOnly:true,
+      secure:true
+     }
+     const {accessToken,newRefreshToken}=await generateAccessAndRefereshToken(user._id)
 
-//      return res.status(200).cookies("accessToken",accessToken,options).cookies("refreshToken",newRefreshToken,options).json({message:'Access token refreshed'})
-//   }catch(error){
-//      return res.status(400).json({message:"something went wrong while refereshing the token"})
-//   }
-// }
+     return res.status(200).cookies("accessToken",accessToken,options).cookies("refreshToken",newRefreshToken,options).json({message:'Access token refreshed'})
+  }catch(error){
+     return res.status(400).json({message:"something went wrong while refereshing the token"})
+  }
+}
 
 
 

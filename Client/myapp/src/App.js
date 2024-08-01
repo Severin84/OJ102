@@ -16,6 +16,7 @@ const NavLayout=()=>(
     <Outlet/>
    </>
 )
+
 function App() {
   const [question,setQuestion]=useState();
   return (

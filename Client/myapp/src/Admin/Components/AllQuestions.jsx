@@ -25,10 +25,6 @@ const AllQuestions = ({ setComponent}) => {
         }
     }
 
-    const handleselectQuestiontobeupdated=(value)=>{
-       
-    }
-
     const deleteQuestion=async()=>{
        try{
           const response=await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/question/deleteQuestion`,{

@@ -6,7 +6,6 @@ import toast from 'react-hot-toast'
 import {homepageQuestionState} from "../store/atoms/HomepageQuestion";
 import {useRecoilState,useRecoilValue,useSetRecoilState} from "recoil"
 
-
 const Home = () => {
   const [questions,setQuestions]=useState([]);
   const navigate=useNavigate();

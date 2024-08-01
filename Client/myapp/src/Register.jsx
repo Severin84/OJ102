@@ -11,6 +11,7 @@ const Register = () => {
   const [password,setpassword]=useState('');
 
 
+  
   const register=async()=>{
     try{
       const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/register`,{

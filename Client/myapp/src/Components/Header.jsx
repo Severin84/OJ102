@@ -7,6 +7,7 @@ import { PiPlantFill } from "react-icons/pi";
 const Header = () => {
  const navigate=useNavigate();
  
+ 
  const handleLogout= async()=>{
     try{
        const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/logout`,

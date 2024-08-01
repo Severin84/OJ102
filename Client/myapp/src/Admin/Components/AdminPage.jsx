@@ -14,6 +14,7 @@ const AdminPage = () => {
 
   const [change,setChange]=useState(false);
 
+
   const update=async()=>{
      try{
          if(email===confirmEmail && password===confirmPassword){
@@ -56,7 +57,6 @@ const AdminPage = () => {
             }
         )
         
-        // console.log(response)
         setDefaultEmail(response?.data?.message?.email)
         setDefaultPassword(response?.data?.message?.password)
     }catch(error){

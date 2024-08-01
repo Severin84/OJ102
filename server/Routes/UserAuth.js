@@ -3,6 +3,7 @@ const { login, register, updateSolvedQuestion, getalluser, getUser, logout, getA
 const { verifyJWT } = require('../Middleware/Auth');
 const router=express.Router();
 
+
 router.post("/login",login);
 router.post("/register",register)
 router.post("/userSolvedQuestion",verifyJWT,updateSolvedQuestion)

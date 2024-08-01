@@ -8,6 +8,8 @@ if(!fs.existsSync(dirInputs)){
     fs.mkdirSync(dirInputs,{recursive:true})
 }
 
+
+
 const generateInputFile=async(input)=>{
     const jobID=uuid();
     const input_filename=`${jobID}.txt`;
