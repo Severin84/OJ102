@@ -93,8 +93,6 @@ const logout=async(req,res,next)=>{
    res.status(200).json({message:"User Logged Out"})
 
 }
-
-
 // const refershAccessToken=async(req,res,next)=>{
 //   try{
 //      const incomingRefeshToken=req.cookies.refreshTokn||req.body.refreshToken;
