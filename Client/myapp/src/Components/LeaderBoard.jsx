@@ -21,7 +21,6 @@ const LeaderBoard = () => {
                 withCredentials:true
             }
         );
-        //console.log(response?.data?.message);
         setUsers(response?.data?.message?.sort((a,b)=>b.numberofquestionsolved-a.numberofquestionsolved))
       }catch(error){
         toast.error(error?.response?.data?.message)
@@ -29,9 +28,7 @@ const LeaderBoard = () => {
       }
        
     }
-   
-    
-    //console.log(users)
+  
   return (
     <div className='LeaderboardPage'>
         <div className='leaderboardpagediv'>

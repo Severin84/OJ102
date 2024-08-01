@@ -45,12 +45,8 @@ const Editor = () => {
 
   const executeCode=async()=>{
     try{
-       //console.log(File)
       if(File===null){
         let resp=[];
-        //'http://localhost:5000/api/code/compile'
-        //${process.env.REACT_APP_BASE_URL}
-        //`https://backend.sprintcode.fun/api/code/compile`
         const response =await axios.post(`${process.env.REACT_APP_BASE_URL}/api/code/compile`,{
           lang:Lang,
           code:code,
@@ -72,8 +68,6 @@ const Editor = () => {
         formData.append("file",File)
         formData.append("lang",Lang)
         formData.append("input",testInput)
-        //'http://localhost:5000/api/code/upload'
-        //${process.env.REACT_APP_BASE_URL}/code/upload
         const response =await axios.post(`${process.env.REACT_APP_BASE_URL}/api/code/upload`,formData,
         {
           headers:{
@@ -96,8 +90,6 @@ const Editor = () => {
    const submitCode=async()=>{
        try{
           if(File===null){
-            //'http://localhost:5000/api/submit/submitCode'
-            //${process.env.REACT_APP_BASE_URL}/submit/submitCode
               const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/submit/submitCode`,{
                 lang:Lang,
                 code:code,
@@ -117,16 +109,11 @@ const Editor = () => {
               })
 
               checkresponse(response?.data?.answers,results)
-
-             // console.log(results)
           }else{
             const formData=new FormData();
             formData.append("file",File)
             formData.append("pid",homepageQuestionDetailsValue?.pid)
             formData.append("lang",Lang)
-            console.log(formData)
-            //'http://localhost:5000/api/submit/submitupload'
-            //${process.env.REACT_APP_BASE_URL}/submit/submitupload
             const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/submit/submitupload`,formData,
             {
               headers:{
@@ -155,9 +142,6 @@ const Editor = () => {
 
    const solvedTheQuestion=async(question)=>{
       try{
-         //console.log(question)
-        //"http://localhost:5000/api/submit/updateSolvedQuestion"
-        //${process.env.REACT_APP_BASE_URL}/submit/updateSolvedQuestion       discription
           const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/userSolvedQuestion`,{pid:question?.pid,title:question?.title,description:question?.discription,difficulty:question?.difficulty,judgement:true,Language:Lang},
             {
               headers:{
@@ -167,7 +151,6 @@ const Editor = () => {
               withCredentials:true
              }
           )
-         console.log(response);
       }catch(error){
         console.log(error)
         // toast.error(error?.response?.data?.message)
@@ -176,9 +159,6 @@ const Editor = () => {
 
    const notsolvedTheQuestion=async(question)=>{
     try{
-       //console.log(question)
-      //"http://localhost:5000/api/submit/updateSolvedQuestion"
-      //${process.env.REACT_APP_BASE_URL}/submit/updateSolvedQuestion       discription
         const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/userSolvedQuestion`,{pid:question?.pid,title:question?.title,description:question?.discription,difficulty:question?.difficulty,judgement:false,Language:Lang},
           {
             headers:{
@@ -188,7 +168,6 @@ const Editor = () => {
             withCredentials:true
            }
         )
-       // console.log(response);
     }catch(error){
       console.log(error)
       //  toast.error(error?.response?.data?.message)
@@ -223,38 +202,9 @@ const Editor = () => {
       setFile(event.target.files[0])
    }
  
-  //  const uploadFiles=async(e)=>{
-  //      e.preventDefault();
-  //      try{
-  //       let resp=[];
-  //       const formData=new FormData();
-  //       formData.append("file",File)
-  //       formData.append("lang",Lang)
-  //       formData.append("input",testInput)
-  //       //"http://localhost:5000/api/code/upload"
-  //       //${process.env.REACT_APP_BASE_URL}/code/upload
-  //       const response=await axios.post(`http://localhost:5000/api/code/upload`,formData,
-  //       {
-  //         headers:{
-  //            'Content-Type':'application/json'
-  //         },
-  //         withCredentials:true
-  //        }
-  //       )
-  //       let b=Buffer.from(response?.data?.message?.data);
-  //       resp.push(b.toString())
-  //       setOutput(resp)
-  //      }catch(error){
-  //        setOutput([]);
-  //        setResult([]);
-  //        console.log(error)
-  //      }
-  //  }
 
    const getTestCase=async()=>{
      try{
-      //"http://localhost:5000/api/tc/getTC"
-      //${process.env.REACT_APP_BASE_URL}/tc/getTC
         const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/tc/getTC`,
         {
           pid:homepageQuestionDetailsValue?.pid
@@ -297,8 +247,6 @@ const Editor = () => {
             withCredentials:true
            }
          )
-        // console.log(response);
-        // setUser(response?.data?.message)
          const questHist=response?.data?.message?.questionSolved.filter((que)=>que.pid===homepageQuestionDetailsValue?.pid)
          console.log(questHist)
          setcurrentQuestionHistory(questHist);

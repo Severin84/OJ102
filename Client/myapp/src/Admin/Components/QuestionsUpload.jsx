@@ -37,8 +37,6 @@ const QuestionsUpload = () => {
                 setdifficultyInfo(value)
             }
         })
-        //'http://localhost:5000/api/question/createQuestion'
-        //${process.env.REACT_APP_BASE_URL}/question/createQuestion
         const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/question/createQuestion`,{
             title:title,
             discription:discription,
@@ -57,8 +55,6 @@ const QuestionsUpload = () => {
     }
 
     const uploadTestCases=async()=>{
-        //'http://localhost:5000/api/tc/createTC'
-        //${process.env.REACT_APP_BASE_URL}/tc/createTC
         const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/tc/createTC`,{
             TestCase:testCase,
             answers:correctAns,

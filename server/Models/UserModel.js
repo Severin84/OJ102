@@ -1,8 +1,6 @@
 const mongoose=require('mongoose');
-//const {Schema}=require('mongoose')
 const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken")
-//const {Schema}=mongoose;
 const userSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -46,22 +44,7 @@ const userSchema=new mongoose.Schema({
 
 },{timestamps:true});
 
-// {
-//     pid:{type:Number,required:true},
-//     title:{type:String,required:true},
-//     description:{type:String,required:true},
-//     difficulty:{type:Object,required:true}
-// }
 
-
-// addresses: [
-//     {
-//         street: { type: String, required: true },
-//         city: { type: String, required: true },
-//         zipcode: { type: String, required: true }
-//     }
-// ]
-// addresses: [Object]
 userSchema.pre("save",async function(next){
     if(!this.isModified("password")){
         return next();

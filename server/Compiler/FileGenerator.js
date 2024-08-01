@@ -12,13 +12,11 @@ if(!fs.existsSync(dirCodes)){
 const generateFile=async(format,content)=>{
     if(format==='Java'){
         const fileName='test'
-        //const jobID=uuid();
         const filename=`${fileName}.java`;
         const filePath=path.join(dirCodes,filename);
         await fs.writeFileSync(filePath,content);
         return filename
     }else{
-        //const fileName='test'
         const jobID=uuid();
         const filename=`${jobID}.${format}`;
         const filePath=path.join(dirCodes,filename);

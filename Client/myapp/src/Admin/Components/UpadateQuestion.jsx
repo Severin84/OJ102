@@ -21,13 +21,7 @@ const [Difficulty,setDifficulty]=useState(question?.difficulty?.difficulty);
       setTitle(value)
     }
 
-    const updatetestCase=(text)=>{
-    // setTestCase([text])
-    }
-
-    const updateCorrectAns=(value)=>{
-        //setCorrectAns(value)
-    }
+   
 
     const selectedDifficulty=(event)=>{
       setDifficulty(event.target.value);
@@ -54,7 +48,6 @@ const [Difficulty,setDifficulty]=useState(question?.difficulty?.difficulty);
        }
     }
 
-    //console.log(question)
   return (
     <div>
         <div style={{display:"flex"}}>

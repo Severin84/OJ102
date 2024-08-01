@@ -13,12 +13,7 @@ const getQuestionData=async(req,res,next)=>{
         return res.status(401).json({message:"Both language and code are required"});
       }
       const testData=await TestCaseModel.TestCaseModel.findOne({pid:pid})
-      // const input = testData?.TestCase;
       const input2=testData?.TestInput;
-      //const dataString = input[0];
-      //const lines = dataString.trim().split('\n');
-      //console.log(lines)
-      // const inputString=testData?.answers[0].trim().split('\n');
       const inputString2=testData?.TestOutput
       if(lang==='cpp'){
          try{
@@ -109,21 +104,13 @@ const getQuestionData=async(req,res,next)=>{
 const submitcodeFromFile=async(req,res,next)=>{
    try{
       const {lang,pid}=req.body;
-      // console.log(lang);
-      // console.log(pid);
-      // console.log(req.file)
       if(!lang||!pid){
         return res.status(401).json({message:"Both language and file are required"});
       }
       const fileName=req.file.filename.split("-")[1];
       const codeFile=path.join(__dirname,'uploads',req.file.filename)
       const testData=await TestCaseModel.TestCaseModel.findOne({pid:pid})
-      // console.log(testData)
-     // const input = testData?.TestCase;
       const input2=testData?.TestInput
-      // const dataString = input[0];
-      // const lines = dataString.trim().split('\n');
-     // const inputString=testData?.answers[0].trim().split('\n');
       const inputString2=testData?.TestOutput;
       const filecontent=fs.readFile(codeFile,{encoding:'utf8'}, async function(error,code){
          if(!error && lang==='cpp'){
@@ -219,22 +206,14 @@ const submitcodeFromFile=async(req,res,next)=>{
 }
 const solvedQuestion=async(req,res,next)=>{
     try{
-        //console.log(req?.cookies)
         const {question}=req?.body;
         const token=req.header("Authorization")?.replace("Bearer ", "");
-        //const response=await User.findOneAndUpdate({refreshToken:refreshToken},{questionSolved})
         if(!question||!token){
             return res.status(401).json({message:"Insufficient data"});
         }
          const decodedToken= jwt.verify(token,process.env.ACCESS_TOKEN_SECRET);
          const user=await User.findOne({_id:decodedToken?._id})
-         //  console.log(user)
-         // user.questionSolved.push(question);
-         // await user.save()
-      //   const array=user.questionSolved;
-      //   array.push(question);
         const response=await User.findOneAndUpdate(user._id,{$push:{questionSolved:question}});
-      //   console.log(response)
     }catch(error){
        return res.status(400).json({message:"Somthing went wrong while upddating solved questions"})
     }

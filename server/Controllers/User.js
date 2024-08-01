@@ -35,11 +35,9 @@ const register=async(req,res,next)=>{
          return res.status(400).json({message:"Email already registered"});
       }
       
-      // const salt=await bcrypt.genSalt(10);
-      // const hashedPassword=await bcrypt.hash(password,salt);
       
       const newUser=await User.create({name,email,password});
-      // await newUser.save();
+      
      
      const createdUser=await User.findById(newUser._id).select("-password -refreshToken")
     
@@ -65,7 +63,7 @@ const login=async(req,res,next)=>{
       }
       const salt=await bcrypt.genSalt(10);
       const hashedPassword=await bcrypt.hash(password,salt)
-      //const isPasswordVaild=await bcrypt.compare(user.password,password);
+     
       const isPasswordVaild=await user.isPasswordCorrect(password);
       
       if(!isPasswordVaild){
@@ -92,7 +90,6 @@ const logout=async(req,res,next)=>{
    res.clearCookie('token');
    res.clearCookie('accessToken');
    res.clearCookie('refreshToken')
-   // res.clearCookies('role')
    res.status(200).json({message:"User Logged Out"})
 
 }
@@ -130,27 +127,7 @@ const refershAccessToken=async(req,res,next)=>{
   }
 }
 
-// const changeCurrentPassword=async(req,res,next)=>{
-//   try{
-//         const {oldPassword,newPassword}=req.body;
 
-//         const user=await
-//   }catch(error){
-//      return res.status(400).json({message:"Something went wrong while updating the password"})
-//   }
-// }
-// const forgotPassword=async(req,res,next)=>{
-//     try{
-//         const {email}=req.body;
-//         const user=await User.UserModel.findOne({email});
-//         if(!user){
-//             return res.status(404).json({message:"User not found"});
-//         }
-
-//         const resetToken=crypto.randomBytes(20).toString('hex');
-//         user.t
-//     }
-// }
 
 const updateSolvedQuestion=async(req,res,next)=>{
   try{
@@ -178,7 +155,6 @@ const updateSolvedQuestion=async(req,res,next)=>{
      if(judgement===true){
        const userdetails=await User.findOne({_id:decodedToken?._id});
        const alreadysolved=userdetails.questionSolved;
-       //const result=alreadysolved.some((element)=>element.pid===pid);
        let count=0;
        for(let i=0;i<alreadysolved.length;i++){
            let data=alreadysolved[i];
@@ -194,7 +170,6 @@ const updateSolvedQuestion=async(req,res,next)=>{
      }
          res.statue(200).json({message:response});
   }catch(error){
-   //"Somthing went wrong while updating solved questions"
       return res.status(400).json({message:"Somthing went wrong while updating solved questions"})
   }
 }
@@ -212,12 +187,10 @@ const getalluser=async(req,res,next)=>{
 const getUser=async(req,res,next)=>{
   try{
      const token=req.header("Authorization")?.replace("Bearer ", "");
-     //console.log(token)
      if(!token){
       return res.status(400).json({message:"User not found"});
      }
      const decodedToken= jwt.verify(token,process.env.ACCESS_TOKEN_SECRET);
-     //const user=await User.findOne({refreshToken:token});
      const user=await User.findById({_id:decodedToken?._id}).select("-password -refreshToken");
      if(!user){
         return res.status(400).json({message:"User does not exist"});

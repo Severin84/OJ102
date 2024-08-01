@@ -36,10 +36,8 @@ const UploadTestCases = () => {
                 },
                 withCredentials:true
            })
-           console.log(response)
            setChange(!change)
        }catch(error){
-        //    console.log(error)
            toast.error(error?.response?.data?.message)
        }
     }
@@ -60,15 +58,11 @@ const UploadTestCases = () => {
             setOutput(response?.data?.message?.TestOutput)
            console.log(response)
         }catch(error){
-            //  console.log(error)
              toast.error(error?.response?.data?.message)
         }
     }
 
     const handleDeleteTC=async(input,output)=>{
-        // console.log("input->"+input)
-        // console.log("output->"+output)
-        // console.log("pid->"+pid)
         try{
             const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/tc/deleteInputOutPutTC`,
                 {
@@ -89,12 +83,8 @@ const UploadTestCases = () => {
         }
     }
 
-    // useEffect(()=>{
-    //    getInputOutputTestCases()
-    // },[])
   useEffect(()=>{
       getInputOutputTestCases();
-    //   uploadInputOutputTestCases()
   },[change])
 
   return (

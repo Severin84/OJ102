@@ -10,8 +10,6 @@ const AllQuestions = ({ setComponent}) => {
 
     const getallQuestionforAdmin=async()=>{
         try{
-          //"http://localhost:5000/api/question/getallQuestions"
-      //${process.env.REACT_APP_BASE_URL}/question/getallQuestions
           const data=await axios.get(`${process.env.REACT_APP_BASE_URL}/api/question/getallQuestions`,
             {
               headers:{

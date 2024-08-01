@@ -10,8 +10,7 @@ const Register = () => {
   const [email,setemail]=useState('');
   const [password,setpassword]=useState('');
 
-  //http://localhost:5000/api/auth/register
-  //${process.env.REACT_APP_BASE_URL}
+
   const register=async()=>{
     try{
       const response=await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/register`,{
@@ -25,9 +24,7 @@ const Register = () => {
        navigate("/register")
      }
       toast.success("Registered Successfully")
-    // console.log(response);
     }catch(error){
-      //console.log(error)
       toast.error(error?.response?.data?.message)
     }
   }

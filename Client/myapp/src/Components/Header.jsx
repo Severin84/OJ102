@@ -18,7 +18,6 @@ const Header = () => {
         withCredentials:true
        }
       );
-       //console.log(response)
        navigate('/login')
        localStorage.setItem('token',null)
     }catch(error){

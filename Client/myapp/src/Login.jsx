@@ -4,8 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import "../src/Login.css";
 import toast,{Toaster} from 'react-hot-toast'
 
-//"http://localhost:5000/api/auth/login"
-//${process.env.REACT_APP_BASE_URL}
+
 const Login = () => {
   const navigate=useNavigate();
   const [email,setemail]=useState('');
@@ -24,7 +23,7 @@ const Login = () => {
         },
         withCredentials:true
        })
-      // console.log(response)
+      
        if(response.status===200){
          if(response?.data?.data?.role==="admin"){
           navigate("/admin")
@@ -32,14 +31,14 @@ const Login = () => {
           navigate("/home")
          }
 
-         //console.log(response)
+        
          localStorage.setItem("token",response?.data?.data?.refreshToken)
        }else{
           navigate("/login")
        }
        toast.success("LoggedIn Successfully")
     }catch(error){
-      // console.log(error)
+     
       toast.error(error?.response?.data?.message)
       localStorage.setItem("token",null);
     }

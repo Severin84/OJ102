@@ -7,9 +7,6 @@ const path=require('path')
 const cCode=async(req,res,next)=>{
     try{
         const {lang,code,input}=req.body;
-      //   console.log("lang->"+lang)
-      //   console.log('code->'+code)
-      //   console.log('input->'+input)
        if(!lang||!code||!input){
          return res.status(401).json({message:"Language , Input and Code all are required"})
        }
@@ -51,15 +48,11 @@ const cCode=async(req,res,next)=>{
 const codefromFile=async(req,res,next)=>{
      try{
          const {lang,input}=req.body;
-         //  console.log("lang=>"+lang);
-         //  console.log("input=>"+input)
-         //  console.log("file=>"+req.file)
          if(!lang||!input){
             return res.status(401).json({message:"Language and Input both are required"})
           }
          const filename=req.file.filename.split("-")[1];
          const codeFile=path.join(__dirname,'uploads',req.file.filename)
-        // console.log(codeFile)
          const filecontent=fs.readFile(codeFile,{encoding:'utf8'},async function(error,code){
             if(!error && lang==='cpp'){
                   try{

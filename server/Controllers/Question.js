@@ -55,7 +55,6 @@ const updateQuestion=async(req,res,next)=>{
       }
       
       const response=await QuestionsModel.QuestionsModel.updateOne({pid:pid},{$set:{discription:discription,title:title}})
-      //console.log("KKK")
       res.status(200).json({message:response});
     }catch(error){
         res.status(500).json({message:"Somthing went wrong while updateing the question"})

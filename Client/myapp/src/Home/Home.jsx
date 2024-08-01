@@ -5,11 +5,9 @@ import '../Home/Home.css';
 import toast from 'react-hot-toast'
 import {homepageQuestionState} from "../store/atoms/HomepageQuestion";
 import {useRecoilState,useRecoilValue,useSetRecoilState} from "recoil"
-//"http://localhost:5000/api/question/getallQuestions"
-//${process.env.REACT_APP_BASE_URL}
+
 
 const Home = () => {
-  //console.log("hello")
   const [questions,setQuestions]=useState([]);
   const navigate=useNavigate();
   const sethomepageQuestion=useSetRecoilState(homepageQuestionState)
@@ -29,11 +27,8 @@ const Home = () => {
           withCredentials:true
          }
         )
-        //console.log(response);
         setQuestions(response?.data?.data)
-        // console.log(document.cookie.)
     }catch(error){
-      console.log(error);
       toast.error(error?.response?.data?.message)
       navigate('/login')
     }

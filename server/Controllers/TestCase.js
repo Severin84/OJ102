@@ -119,10 +119,6 @@ const getInputandOutputTestCases=async(req,res,next)=>{
 const deleteTestInputAndOutPut=async(req,res,next)=>{
    try{
       const {pid,input,output}=req.body;
-      // console.log("1->1")
-      // console.log("pid:"+pid)
-      // console.log("input:"+input)
-      // console.log("output:"+output)
       if(pid===undefined||input===undefined||output===undefined){
         return res.status(401).json({message:"Pid required"})
       }
@@ -131,10 +127,7 @@ const deleteTestInputAndOutPut=async(req,res,next)=>{
       if(!currentTestData){
         return res.status(401).json({message:"Invalid PID"});
       }
-      // console.log("3->3")
-      // console.log(input)
-      // console.log("kjj")
-      // console.log(output)
+     
       const TestInputData=currentTestData.TestInput;
       
       const TestOutputData=currentTestData.TestOutput;

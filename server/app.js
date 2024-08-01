@@ -19,7 +19,6 @@ app.use(express.static(__dirname))
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json())
 app.use(cookieParser())
-//qIU2swIDluB5CV42
 const PORT= process.env.PORT;
 async function connect(){
     try{
