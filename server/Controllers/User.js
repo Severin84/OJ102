@@ -12,9 +12,9 @@ const generateAccessAndRefereshToken=async(userID)=>{
       console.log("user doesnot exist");
       return;
      }
-
+     console.log("3")
      const accessToken=user.generateAccessToken();
-   
+     console.log("4")
      const refreshToken=user.generateRefreshToken();
    
      user.refreshToken=refreshToken;
