@@ -64,7 +64,7 @@ const AllQuestions = ({ setComponent}) => {
                       <td>{value?.pid}</td>
                       <td>{value?.title}</td>
                       <td><div style={{backgroundColor:`${value?.difficulty?.color}`,width:"4rem",borderRadius:"0.5rem",display:"flex",justifyContent:"center",marginLeft:"1rem"}}>{value?.difficulty?.difficulty}</div></td>
-                      <td><button className='updateButton' onClick={()=>{handleselectQuestiontobeupdated(value);setComponent(<UpadateQuestion question={value}/>)}}>Update</button></td>
+                      <td><button className='updateButton' onClick={()=>{setComponent(<UpadateQuestion question={value}/>)}}>Update</button></td>
                       <td><button className='deleteButton' onClick={()=>deleteQuestion()}>Delete</button></td>
                     </tr>
                     </table>
@@ -77,3 +77,6 @@ const AllQuestions = ({ setComponent}) => {
 }
 
 export default AllQuestions
+
+// <td><button className='updateButton' onClick={()=>{handleselectQuestiontobeupdated(value);setComponent(<UpadateQuestion question={value}/>)}}>Update</button></td>
+//error => handleselectQuestiontobeupdated(value)
