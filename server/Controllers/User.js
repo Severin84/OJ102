@@ -75,6 +75,7 @@ const login=async(req,res,next)=>{
         return res.status(401).json({message:"Invalid Email or Password"});
       }
       console.log("7")
+      console.log(user)
       const {accessToken,refreshToken}=await generateAccessAndRefereshToken(user._id);
       console.log("8")
       const loggedInUser=await User.findById(user._id).select("-password -refreshToken");
