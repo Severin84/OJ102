@@ -9,9 +9,9 @@ const generateAccessAndRefereshToken=async(userID)=>{
 
      console.log('13')
      const user=await User.findById(userID);
-     console.log(user)
+     console.log(user.generateAccessToken())
      console.log('14')
-     const accessToken=user.generateAccessToken();
+     const accessToken=await user.generateAccessToken();
      console.log('15')
      const refreshToken=user.generateRefreshToken();
      console.log('16')
