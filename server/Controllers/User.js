@@ -1,5 +1,5 @@
 const jwt =require("jsonwebtoken");
-const User=require('../../server/Models/UserModel.js');
+const User=require('../Models/UserModel.js');
 const bcrypt=require('bcrypt');
 const mongoose=require("mongoose")
 
