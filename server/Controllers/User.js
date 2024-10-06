@@ -6,16 +6,17 @@ const mongoose=require("mongoose")
 
 const generateAccessAndRefereshToken=async(userID)=>{
   try{
-  
+     console.log('13')
      const user=await User.findById(userID);
-    
+     console.log('14')
      const accessToken=user.generateAccessToken();
-    
+     console.log('15')
      const refreshToken=user.generateRefreshToken();
-    
+     console.log('16')
      user.refreshToken=refreshToken;
+     console.log('17')
      await user.save({validateBeforeSave:false})
-
+     console.log('18')
      return {accessToken,refreshToken};
   }catch(error){
      res.status(500).json({message:"Somthing went wrong while generating refersh token and access Token"})
@@ -74,7 +75,7 @@ const login=async(req,res,next)=>{
       if(!isPasswordVaild){
         return res.status(401).json({message:"Invalid Email or Password"});
       }
-      console.log(user)
+      // console.log(user)
       console.log("7")
      
       const {accessToken,refreshToken}=await generateAccessAndRefereshToken(user._id);
