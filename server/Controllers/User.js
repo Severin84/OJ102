@@ -53,32 +53,41 @@ const register=async(req,res,next)=>{
 
 const login=async(req,res,next)=>{
     try{
+      console.log("1")
       const {email,password}=req.body;
+      console.log("2")
       if(!email || !password){
          return res.status(400).json({message:"Both email and password are required"});
       }
+      console.log("3")
       const user=await User.findOne({email});
+      console.log("4")
       if(!user){
         return res.status(400).json({message:"User does not exist"})
       }
+      console.log("5")
       // const salt=await bcrypt.genSalt(10);
       // const hashedPassword=await bcrypt.hash(password,salt)
      
       const isPasswordVaild=await user.isPasswordCorrect(password);
-      
+      console.log("6")
       if(!isPasswordVaild){
         return res.status(401).json({message:"Invalid Email or Password"});
       }
+      console.log("7")
       const {accessToken,refreshToken}=await generateAccessAndRefereshToken(user._id);
-
+      console.log("8")
       const loggedInUser=await User.findById(user._id).select("-password -refreshToken");
-
+      console.log("9")
       const finaluser=await User.updateOne({_id:user._id},{refreshToken:refreshToken});
+      console.log("10")
       const getthatuser=await User.findOne({_id:user._id})
+      console.log("11")
       const options={
         httpOnly:true,
         secure:true,
       }     
+      console.log("12")
       return res.status(200).cookie("accessToken",accessToken,options).cookie("refreshToken",refreshToken,options).json({data:getthatuser})
     }catch(error){
        return res.status(500).json({message:'An error occured while logging'})
