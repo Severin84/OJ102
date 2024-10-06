@@ -9,7 +9,13 @@ const generateAccessAndRefereshToken=async(userID)=>{
 
      console.log('13')
      const user=await User.findById(userID);
-     console.log(user.generateAccessToken())
+     
+     if(!user){
+      console.log("user doesnot exist");
+      return;
+     }
+
+     //console.log(user.generateAccessToken())
      console.log('14')
      const accessToken=await user.generateAccessToken();
      console.log('15')
