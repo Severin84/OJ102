@@ -6,8 +6,10 @@ const mongoose=require("mongoose")
 
 const generateAccessAndRefereshToken=async(userID)=>{
   try{
+
      console.log('13')
      const user=await User.findById(userID);
+     console.log(user)
      console.log('14')
      const accessToken=user.generateAccessToken();
      console.log('15')
